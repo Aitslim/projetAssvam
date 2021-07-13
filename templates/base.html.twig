@@ -1,19 +1,44 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<style>
+			.fakeimg {
+				height: 200px;
+				background: #aaa;
+			}
+		</style>
+		{% block stylesheets %}
+			<link
+			href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+		{# <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+					<link href="assets/params/css/index.css" rel="stylesheet">
+					<link href="assets/params/css/home.css" rel="stylesheet"> #}
+		{% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}{% endblock %}
+
+	</head>
+
+	<body>
+		{% include "shared/_nav.html.twig" %}
+		{% include "shared/_header.html.twig" %}
+
+		{# <div class="container my-5"> #}
+		{% block body %}{% endblock %}
+		{# </div> #}
+	</body>
+
 </html>

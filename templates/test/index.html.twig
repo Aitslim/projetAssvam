@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Bonjour TestController !
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid" style="margin-top:30px">
+
+		<div
+			class="row">
+
+			<!-- Debut Actu -->
+			<div
+				class="col-md-8 col-sm-8 col-lg-8">
+
+				<!-- *ngFor="let item of actualites" -->
+				{% for actu in 0..10 %}
+					<div>
+
+						<div class="card mb-4" style="background-color: #B0C4DE;">
+
+							<div class="card-body bg-light text-dark">
+
+								<img src="{{ asset('assets/images/img_avatar1.png') }}" alt="" class="float-left img-thumbnail" style="width:35%;height:35%;margin-right:15px;">
+								<div class="d-flex justify-content-between">
+									<div>
+										<h4 class="card-title">
+											item.titre
+											{{ actu }}
+										</h4>
+									</div>
+									<div>
+										<sup>
+											item.createdAt
+										</sup>
+									</div>
+								</div>
+
+								<h6 class="card-subtitle text-muted">item.debut1
+								</h6>
+								<p class="card-text" style="font-size: 14px;">
+									item.debut2
+									<br>
+									item.textemessage
+									<br>
+									item.fin1
+								</p>
+								<p class="card-text" style="font-size: 14px;">
+									item.fin2
+								</p>
+								<a href="#!" class="card-link">
+									item.lien
+								</a>
+
+							</div>
+
+						</div>
+
+					</div>
+				{% endfor %}
+			</div>
+			<!-- Fin Actu -->
+
+			<div
+				class="col-md-4 col-sm-4 col-lg-4">
+				<!-- <div [ngClass]="{'col-md-4': !actuvide, 'col-sm-4': actuvide, 'col-lg-4': !actuvide}"> -->
+
+				<h2>A propos de
+				</h2>
+				<h5>Photo de :</h5>
+				<div class="fakeimg">Une image ici</div>
+				<p>Un texte pour la photo...</p>
+				<h3>Un lien</h3>
+				<p>Lorem ipsum dolor sit ame.</p>
+
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Active</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Lien 1</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Lien 2</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">Lien 3</a>
+					</li>
+				</ul>
+
+				<hr class="d-sm-none">
+
+				<div>
+					<h2>TITRE PRINCIPAL</h2>
+					<h5>Un sous-titre, Dec 7, 2021</h5>
+					<div class="fakeimg">Une image ici</div>
+					<p>Une description..</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+					<br>
+					<h2>UN AUTRE TITRE...</h2>
+					<h5>Un sous-titre, Sep 2, 2021</h5>
+					<div class="fakeimg">Une image ici</div>
+					<p>Un texte pour la photo...</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

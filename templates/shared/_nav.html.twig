@@ -1,0 +1,69 @@
+<!-- Menu de navigation -->
+<nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark" style="background-color: #212121;">
+	<a class="navbar-brand">
+		<img src="assets/images/Village.jpg" alt="logo" style="width:30px; height:30px">
+	</a>
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<span class="navbar-text">{{ NomVillage }}</span>
+			<!-- <span class="navbar-text" style="font-size: 20px;">{{ NomVillage }}</span> -->
+		</li>
+	</ul>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+				<a class="nav-link" routerlink="/" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="fas fa-home mr-1"></i>Accueil</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerlink="/about" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="far fa-question-circle mr-1"></i>A propos</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerlink="/contact" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="fas fa-envelope mr-1"></i>Contact</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerlink="/MonComposant" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="fas fa-envelope mr-1"></i>Autre</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+				<div class="dropdown-menu" aria-labelledby="dropdown01">
+					<a class="dropdown-item" routerlink="/ListeActualites" data-toggle="collapse" data-target=".navbar-collapse.show">Liste</a>
+					<a class="dropdown-item" routerlink="/AjoutActualite" data-toggle="collapse" data-target=".navbar-collapse.show">Ajouter</a>
+				</div>
+			</li>
+
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link" routerlink="/register" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="fas fa-user mr-1"></i>Inscription</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" routerlink="/login" data-toggle="collapse" data-target=".navbar-collapse.show">
+					<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a href="" class="nav-link" routerlink="profile">{{ username }}</a>
+			</li>
+			<li class="nav-item">
+				<a href="" class="nav-link">
+					<i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
+			</li>
+		</ul>
+
+	</div>
+</nav>
