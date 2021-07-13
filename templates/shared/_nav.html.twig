@@ -18,27 +18,31 @@
 
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item active">
-				<a class="nav-link" routerlink="/" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="fas fa-home mr-1"></i>Accueil</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerlink="/about" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="far fa-question-circle mr-1"></i>A propos</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerlink="/contact" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="fas fa-envelope mr-1"></i>Contact</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerlink="/MonComposant" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="fas fa-envelope mr-1"></i>Autre</a>
 			</li>
 
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
 				<div class="dropdown-menu" aria-labelledby="dropdown01">
-					<a class="dropdown-item" routerlink="/ListeActualites" data-toggle="collapse" data-target=".navbar-collapse.show">Liste</a>
-					<a class="dropdown-item" routerlink="/AjoutActualite" data-toggle="collapse" data-target=".navbar-collapse.show">Ajouter</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Article</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Agenda</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Utilisateurs</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Diaporama</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu x</a>
+					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu y</a>
 				</div>
 			</li>
 
@@ -46,18 +50,18 @@
 
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" routerlink="/register" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="fas fa-user mr-1"></i>Inscription</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerlink="/login" data-toggle="collapse" data-target=".navbar-collapse.show">
+				<a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">
 					<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
 			</li>
 		</ul>
 
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a href="" class="nav-link" routerlink="profile">{{ username }}</a>
+				<a href="" class="nav-link">{{ username }}</a>
 			</li>
 			<li class="nav-item">
 				<a href="" class="nav-link">
