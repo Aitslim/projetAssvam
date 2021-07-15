@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
-{% block title %}Ajouter un post
+{% block title %}Modifier un article
 {% endblock %}
 
 {% block body %}
@@ -8,8 +8,9 @@
 	<main>
 		<div class="container-fluid px-4">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item active">Modifier un post</li>
+				<li class="breadcrumb-item active">Modifier un article</li>
 			</ol>
+
 			{{ form_start(form) }}
 			{{ form_row(form.title) }}
 			{{ form_row(form.content) }}

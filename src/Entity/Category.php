@@ -74,17 +74,17 @@ class Category
         return $this;
     }
 
-    // public function getSlug(): ?string
-    // {
-    //     return $this->slug;
-    // }
-
-    public function setSlug(string $slug): self
+    public function getSlug(): ?string
     {
-        $this->slug = $slug;
-
-        return $this;
+        return $this->slug;
     }
+
+    // public function setSlug(string $slug): self
+    // {
+    //     $this->slug = $slug;
+
+    //     return $this;
+    // }
 
     public function getParent(): ?self
     {

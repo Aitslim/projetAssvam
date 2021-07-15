@@ -1,33 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
 {% block title %}Ajouter un article
 {% endblock %}
 
 {% block body %}
 
-	<main class="mb-4">
-		<div class="container px-4 px-lg-5">
-			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div class="col-md-10 col-lg-8 col-xl-7">
+	<main>
+		<div class="container-fluid px-4">
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active">Ajouter un article</li>
+			</ol>
 
-					<div class="example-wrapper">
-						<h1>Ajouter d'un article</h1>
-						{# {{form(form)}} #}
+			{{ form_start(form) }}
+			{{ form_row(form.title) }}
+			{{ form_row(form.content) }}
+			{{ form_row(form.image) }}
+			{{ form_row(form.category) }}
 
-						{{ form_start(form) }}
-						{{ form_row(form.title) }}
-						{{ form_row(form.content) }}
-						{{ form_row(form.image) }}
-						{{ form_row(form.category) }}
+			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_post_add') }}">Ajouter</button>
+			{{ form_end(form) }}
 
-						{# {{ form_row(form.Valider) }} #}
-
-						<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('post_home') }}">Valider</button>
-						{{ form_end(form) }}
-
-					</div>
-				</div>
-			</div>
 		</div>
 	</main>
 {% endblock %}

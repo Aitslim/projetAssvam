@@ -32,10 +32,15 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //
+            $post->setUser($this->getUser());
+            $post->setActive(false);
+            $post->setArchived(false);
+            //
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-            $this->addFlash('success', 'Votre post a été ajouté avec succès !');
+            $this->addFlash('success', 'Article ajouté avec succès !');
             return $this->redirectToRoute('admin_post_index');
         }
 
@@ -49,18 +54,13 @@ class PostController extends AbstractController
      */
     public function updatePost(Post $post, Request $request): Response
     {
-
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
-        // dd($post);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
-            $this->addFlash('success', 'Votre post a été modifié avec succès !');
+            $this->addFlash('success', 'Article modifié avec succès !');
             return $this->redirectToRoute('admin_post_index');
         }
 

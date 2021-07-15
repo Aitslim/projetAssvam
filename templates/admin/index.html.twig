@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
 {% block title %}Hello AdminController!
 {% endblock %}
@@ -13,10 +13,12 @@
 					<div class="card-body">
 						<h2 class="card-title text-primary">Buttons</h2>
 						<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
+						<a href="{{ path('admin_category_index') }}">
+							<button type="button" class="btn btn-outline-primary btn-lg">Catégories</button>
+						</a>
 						<a href="{{ path('admin_post_index') }}">
 							<button type="button" class="btn btn-outline-primary btn-lg">Articles</button>
 						</a>
-						<button type="button" class="btn btn-outline-primary btn-lg">Agenda</button>
 						<button type="button" class="btn btn-outline-primary btn-lg">Diaporama</button>
 						<button type="button" class="btn btn-outline-secondary btn-lg">Secondary</button>
 					</div>

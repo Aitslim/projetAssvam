@@ -13,9 +13,6 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-
-        // dd("je suis dans admin_home");
-
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);

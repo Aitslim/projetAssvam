@@ -29,10 +29,13 @@
 								</div>
 								<p class="card-text" style="font-size: 14px;">
 									{{ post.content | raw }}
+									{# 
+									{{ post.content|striptags|length > 160 ? post.content|striptags|slice(1, 160)|raw  : post.content | raw }}
+									#}
 								</p>
-								<a href="#!" class="card-link">
-									item.lien
-								</a>
+								<a href="" class="card-link">
+									Lire la suite.</a>
+								<a href="#!" class="card-link">item.lien</a>
 
 							</div>
 
