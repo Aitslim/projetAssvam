@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h2>Cards Columns</h2>
+
+		<div class="row justify-content-center pb-4">
+			<div class="col-md-8 text-center">
+				<div class="card">
+					<div class="card-body">
+						<h2 class="card-title text-primary">Buttons</h2>
+						<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
+						<a href="{{ path('admin_post_index') }}">
+							<button type="button" class="btn btn-outline-primary btn-lg">Articles</button>
+						</a>
+						<button type="button" class="btn btn-outline-primary btn-lg">Agenda</button>
+						<button type="button" class="btn btn-outline-primary btn-lg">Diaporama</button>
+						<button type="button" class="btn btn-outline-secondary btn-lg">Secondary</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-columns">
+			<div class="card bg-primary">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the first card</p>
+				</div>
+			</div>
+			<div class="card bg-warning">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the second card</p>
+				</div>
+			</div>
+			<div class="card bg-success">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the third card</p>
+				</div>
+			</div>
+			<div class="card bg-danger">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the fourth card</p>
+				</div>
+			</div>
+			<div class="card bg-light">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the fifth card</p>
+				</div>
+			</div>
+			<div class="card bg-info">
+				<div class="card-body text-center">
+					<p class="card-text">Some text inside the sixth card</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

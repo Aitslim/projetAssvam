@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un post
+{% endblock %}
+
+{% block body %}
+
+	<main>
+		<div class="container-fluid px-4">
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active">Modifier un post</li>
+			</ol>
+			{{ form_start(form) }}
+			{{ form_row(form.title) }}
+			{{ form_row(form.content) }}
+			{{ form_row(form.image) }}
+			{{ form_row(form.category) }}
+
+			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_post_index') }}">Valider</button>
+			{{ form_end(form) }}
+
+		</div>
+	</main>
+{% endblock %}

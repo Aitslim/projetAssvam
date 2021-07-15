@@ -1,55 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Bonjour TestController !
+	Accueil
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid" style="margin-top:30px">
 
-		<div
-			class="row">
-
-			<!-- Debut Actu -->
+		<div class="row">
 			<div class="col-md-8 col-sm-8 col-lg-8">
-
 				<h2>Actualités</h2>
-				{% for actu in 0..10 %}
+				{% for post in lastposts %}
 					<div>
 
 						<div class="card mb-4" style="background-color: #B0C4DE;">
 
 							<div class="card-body bg-light text-dark">
-
-								<img src="{{ asset('assets/images/img_avatar1.png') }}" alt="" class="float-left img-thumbnail" style="width:35%;height:35%;margin-right:15px;">
+								<img src="{{ asset('assets/images/Marguerites.jpg') }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
 								<div class="d-flex justify-content-between">
 									<div>
-										<h4 class="card-title">
-											item.titre
-											{{ actu }}
-										</h4>
+										<h4 class="card-title">{{ post.title | raw }}</h4>
 									</div>
 									<div>
 										<sup>
-											item.createdAt
+											{{ post.createdAt | date("d/m/Y") }}
 										</sup>
 									</div>
 								</div>
-
-								<h6 class="card-subtitle text-muted">item.debut1
-								</h6>
 								<p class="card-text" style="font-size: 14px;">
-									item.debut2
-									<br>
-									LoremExcepteur id commodo sint nisi sit labore anim enim do. Nostrud dolor sint Lorem excepteur. Et deserunt tempor velit proident ex deserunt eu duis non dolore quis. Pariatur excepteur id aliqua do do culpa cupidatat proident ipsum consectetur eiusmod Lorem tempor.
-																		Tempor occaecat laborum Lorem commodo. Ipsum deserunt nostrud exercitation ex adipisicing voluptate enim minim in. Voluptate deserunt anim cillum magna esse tempor.
-																		Laboris qui ut anim commodo ut amet incididunt elit aliquip qui proident duis officia elit. Veniam cillum ea cupidatat ea adipisicing ullamco amet ullamco. Est consequat eu qui sit laborum deserunt. Do laborum deserunt proident eiusmod ea proident nisi dolor aliqua qui commodo veniam ut voluptate. Do velit nostrud amet occaecat pariatur consectetur do et esse non aliqua ullamco ea dolor.
-																		Enim est labore minim officia. Cillum cupidatat aute id cillum aliqua consequat sit voluptate irure. Anim eu reprehenderit velit quis aute eu cillum proident aute. Sint dolor anim aute non Lorem cupidatat voluptate dolor aliquip sint fugiat reprehenderit elit.
-									<br>
-									item.fin1
-								</p>
-								<p class="card-text" style="font-size: 14px;">
-									item.fin2
+									{{ post.content | raw }}
 								</p>
 								<a href="#!" class="card-link">
 									item.lien
@@ -61,15 +40,12 @@
 
 					</div>
 				{% endfor %}
+
 			</div>
-			<!-- Fin Actu -->
+			{# <!-- Fin Actu --> #}
 
-			<div
-				class="col-md-4 col-sm-4 col-lg-4">
-				<!-- <div [ngClass]="{'col-md-4': !actuvide, 'col-sm-4': actuvide, 'col-lg-4': !actuvide}"> -->
-
-				<h2>A propos de
-				</h2>
+			<div class="col-md-4 col-sm-4 col-lg-4">
+				<h2>A propos de</h2>
 				<h5>Photo de :</h5>
 				<div class="fakeimg">Une image ici</div>
 				<p>Un texte pour la photo...</p>

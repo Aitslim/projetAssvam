@@ -4,21 +4,30 @@
 {% endblock %}
 
 {% block body %}
-	{% for flashError in app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
-	{% endfor %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card card-signin my-3">
+					<div class="card-body">
+						<h5 class="card-title text-center">Inscription</h5>
 
-	<h1>Register</h1>
+						{% for flashError in app.flashes('verify_email_error') %}
+							<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+						{% endfor %}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.username) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+						{{ form_start(registrationForm) }}
+						{{ form_row(registrationForm.username) }}
+						{{ form_row(registrationForm.email) }}
+						{{ form_row(registrationForm.plainPassword, {label: 'Password' }) }}
+						{{ form_row(registrationForm.agreeTerms) }}
 
-	{# <button type="submit" class="btn">Register</button> #}
-	<button type="submit" class="btn btn-lg btn-primary my-3">Register</button>
-	{{ form_end(registrationForm) }}
+						{# <button type="submit" class="btn">Register</button> #}
+						<button type="submit" class="btn btn-lg btn-primary my-3">S'inscrire</button>
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
