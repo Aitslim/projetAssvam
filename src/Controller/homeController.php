@@ -15,10 +15,10 @@ class homeController extends AbstractController
      */
     public function home(PostRepository $postRepository): Response
     {
-        $lastposts = $postRepository->findLastPosts(3);
+        $lastposts = $postRepository->findLastPosts();
         $oldposts = $postRepository->findOldPosts();
 
-        return $this->render('post/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'lastposts' => $lastposts,
             'oldposts' => $oldposts,
         ]);

@@ -11,27 +11,38 @@
 			<div class="col-md-8 text-center">
 				<div class="card">
 					<div class="card-body">
-						<h2 class="card-title text-primary">Buttons</h2>
-						<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
-						<a href="{{ path('admin_category_index') }}">
+						<h2 class="card-title text-primary">Admin</h2>
+
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
+						</a>
+
+						<a href="{{ path('admin_category_list') }}">
 							<button type="button" class="btn btn-outline-primary btn-lg">Catégories</button>
 						</a>
-						<a href="{{ path('admin_post_index') }}">
+						<a href="{{ path('admin_post_list') }}">
 							<button type="button" class="btn btn-outline-primary btn-lg">Articles</button>
 						</a>
-						<button type="button" class="btn btn-outline-primary btn-lg">Diaporama</button>
-						<button type="button" class="btn btn-outline-secondary btn-lg">Secondary</button>
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Agenda</button>
+						</a>
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Annonces</button>
+						</a>
+
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="card-columns">
-			<div class="card bg-primary">
+
+			<a href="{{ path('admin_post_list') }}" class="card bg-primary">
 				<div class="card-body text-center">
-					<p class="card-text">Some text inside the first card</p>
+					<p style="color:red" class="card-text">Some text inside the first card</p>
 				</div>
-			</div>
+			</a>
+
 			<div class="card bg-warning">
 				<div class="card-body text-center">
 					<p class="card-text">Some text inside the second card</p>

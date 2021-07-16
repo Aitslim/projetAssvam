@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse Email est déjà enregistrée")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $username;
+    private $pseudo;
 
     /**
      * @ORM\Column(type="boolean")
@@ -193,6 +193,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $post->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pseudo
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set the value of pseudo
+     *
+     * @return  self
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

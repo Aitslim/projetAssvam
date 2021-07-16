@@ -32,17 +32,21 @@
 				<a class="nav-link" href="{{ path('home') }}">
 					<i class="fas fa-envelope mr-1"></i>Autre</a>
 			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-				<div class="dropdown-menu" aria-labelledby="dropdown01">
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Article</a>
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Agenda</a>
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Utilisateurs</a>
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Diaporama</a>
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu x</a>
-					<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu y</a>
-				</div>
-			</li>
+
+			{% if is_granted("ROLE_ADMIN") %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown01">
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Article</a>
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Agenda</a>
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Utilisateurs</a>
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Diaporama</a>
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu x</a>
+						<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu y</a>
+					</div>
+				</li>
+			{% endif %}
+
 			{% if not app.user %}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_register') }}">
@@ -54,7 +58,7 @@
 				</li>
 			{% else %}
 				<li class="nav-item">
-					<span class="navbar-text">{{ app.user.username }}</span>
+					<span class="navbar-text">{{ app.user.pseudo }}</span>
 				</li>
 				<li class="nav-item">
 					<a href="{{ path('app_logout') }}" class="nav-link">

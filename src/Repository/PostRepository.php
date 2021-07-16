@@ -19,11 +19,25 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findOldPosts(int $nb = 2): array
+    public function findLastPosts(int $nb = 10)
+    {
+        // A REVOIR : ajouter archive = true ou false
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.active = :status')
+            ->setParameter('status', true)
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOldPosts(int $nb = 5): array
     {
         $entityManager = $this->getEntityManager();
 
         // A REVOIR : ajouter archive = true ou false
+
         $query = $entityManager->createQuery(
             'SELECT p.id, p.title, p.createdAt, p.slug, p.image
             FROM App\Entity\Post p
@@ -33,17 +47,6 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter('status', true)
             ->setMaxResults($nb);
         return $query->getResult();
-    }
-
-    public function findLastPosts(int $nb = 2)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.active = :status')
-            ->setParameter('status', true)
-            ->orderBy('p.createdAt', 'DESC')
-            ->setMaxResults($nb)
-            ->getQuery()
-            ->getResult();
     }
 
     // /**

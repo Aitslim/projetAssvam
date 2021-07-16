@@ -16,7 +16,7 @@
 						<h5>Réinitialiser mon mot de passe</h5>
 
 						{{ form_start(requestForm) }}
-						{{ form_row(requestForm.email) }}
+						{{ form_row(requestForm.email, {required : true}) }}
 						<div>
 							<small>
 								Entrer vote adresse email pour recevoir un lien de réinitialisation.

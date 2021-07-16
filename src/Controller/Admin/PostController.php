@@ -5,19 +5,24 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class PostController extends AbstractController
+class PostController extends AdminController
 {
     /**
-     * @Route("/admin/post", name="admin_post_index")
+     * @Route("/admin/post", name="admin_post_list")
      */
     public function indexPost(PostRepository $postRepository): Response
     {
-        return $this->render('admin/post/index.html.twig', [
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('admin/post/list.html.twig', [
             'posts' => $postRepository->findAll(),
         ]);
     }
@@ -27,6 +32,10 @@ class PostController extends AbstractController
      */
     public function addPost(Request $request): Response
     {
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -41,7 +50,7 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
             $this->addFlash('success', 'Article ajouté avec succès !');
-            return $this->redirectToRoute('admin_post_index');
+            return $this->redirectToRoute('admin_post_list');
         }
 
         return $this->render('admin/post/add.html.twig', [
@@ -54,6 +63,10 @@ class PostController extends AbstractController
      */
     public function updatePost(Post $post, Request $request): Response
     {
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,7 +74,7 @@ class PostController extends AbstractController
             $em->persist($post);
             $em->flush();
             $this->addFlash('success', 'Article modifié avec succès !');
-            return $this->redirectToRoute('admin_post_index');
+            return $this->redirectToRoute('admin_post_list');
         }
 
         return $this->render('admin/post/update.html.twig', [
@@ -74,6 +87,10 @@ class PostController extends AbstractController
      */
     public function activatePost(Post $post): Response
     {
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
         $post->setActive(($post->getActive()) ? 'false' : 'true');
         $em = $this->getDoctrine()->getManager();
         $em->persist($post);
@@ -86,10 +103,14 @@ class PostController extends AbstractController
      */
     public function deletePost(Post $post): Response
     {
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Article supprimé !');
-        return $this->redirectToRoute('admin_post_index');
+        return $this->redirectToRoute('admin_post_list');
     }
 }

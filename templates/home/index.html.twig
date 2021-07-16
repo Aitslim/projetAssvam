@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid" style="margin-top:30px">
+
+		<div class="row">
+			<div class="col-md-8 col-sm-8 col-lg-8">
+				<h2>Actualités</h2>
+				{% for post in lastposts %}
+					<div>
+
+						<div class="card mb-4" style="background-color: #B0C4DE;">
+
+							<div class="card-body bg-light text-dark">
+								<img src="{{ asset('assets/images/Marguerites.jpg') }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+								<div class="d-flex justify-content-between">
+									<div>
+										<h4 class="card-title">{{ post.title }}</h4>
+									</div>
+									<div>
+										<sup>
+											Publié le
+											{{ post.createdAt | date("d/m/Y") }}
+										</sup>
+									</div>
+								</div>
+								<p class="card-text" style="font-size: 14px;">
+									{{ post.content | u.truncate(460, ' ...', false) | raw }}
+								</p>
+								<a href="" class="card-link">
+									Lire la suite.</a>
+								<a href="#!" class="card-link">item.lien</a>
+
+							</div>
+
+						</div>
+
+					</div>
+				{% endfor %}
+
+			</div>
+			{# <!-- Fin Actu --> #}
+
+			<div class="col-md-4 col-sm-4 col-lg-4">
+				<h2>A propos de</h2>
+				<h5>Photo de :</h5>
+				<div class="fakeimg">Une image ici</div>
+				<p>Un texte pour la photo...</p>
+				<h3>Un lien</h3>
+				<p>Lorem ipsum dolor sit ame.</p>
+
+				<ul class="nav nav-pills flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Active</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Lien 1</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Lien 2</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">Lien 3</a>
+					</li>
+				</ul>
+
+				<hr class="d-sm-none">
+
+				<div>
+					<h2>TITRE PRINCIPAL</h2>
+					<h5>Un sous-titre, Dec 7, 2021</h5>
+					<div class="fakeimg">Une image ici</div>
+					<p>Une description..</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+					<br>
+					<h2>UN AUTRE TITRE...</h2>
+					<h5>Un sous-titre, Sep 2, 2021</h5>
+					<div class="fakeimg">Une image ici</div>
+					<p>Un texte pour la photo...</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}

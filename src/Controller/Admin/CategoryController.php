@@ -5,19 +5,24 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CategoryController extends AbstractController
+class CategoryController extends AdminController
 {
     /**
-     * @Route("/admin/category/", name="admin_category_index")
+     * @Route("/admin/category/", name="admin_category_list")
      */
     public function indexCategory(CategoryRepository $categoryRepository): Response
     {
-        return $this->render('admin/category/index.html.twig', [
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('admin/category/list.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
     }
@@ -27,6 +32,10 @@ class CategoryController extends AbstractController
      */
     public function addCategory(Request $request): Response
     {
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -38,7 +47,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('success', 'Votre Cetegorie a été ajouté avec succes !');
 
-            return $this->redirectToRoute('admin_category_index');
+            return $this->redirectToRoute('admin_category_list');
         }
 
         return $this->render('admin/category/add.html.twig', [
@@ -51,8 +60,11 @@ class CategoryController extends AbstractController
      */
     public function updateCategory(Category $category, Request $request): Response
     {
-        $form = $this->createForm(CategoryType::class, $category);
+        if (!$this->isAdmin()) {
+            return $this->redirectToRoute('home');
+        }
 
+        $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -61,7 +73,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash('success', 'Votre Cetegorie a été modifié avec succes !');
 
-            return $this->redirectToRoute('admin_category_index');
+            return $this->redirectToRoute('admin_category_list');
         }
 
         return $this->render('admin/category/add.html.twig', [
