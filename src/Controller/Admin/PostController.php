@@ -9,6 +9,8 @@ use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 // use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AdminController
@@ -30,7 +32,7 @@ class PostController extends AdminController
     /**
      * @Route("/admin/post/add", name="admin_post_add")
      */
-    public function addPost(Request $request): Response
+    public function addPost(Request $request, SluggerInterface $slugger): Response
     {
         if (!$this->isAdmin()) {
             return $this->redirectToRoute('home');
@@ -46,6 +48,34 @@ class PostController extends AdminController
             $post->setActive(false);
             $post->setArchived(false);
             //
+            // Début image
+            /** @var UploadedFile $postimageFile */
+            $postimageFile = $form->get('imagefilename')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($postimageFile) {
+                $originalFilename = pathinfo($postimageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $postimageFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $postimageFile->move(
+                        $this->getParameter('imgposts_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'imageFilename' property to store the PDF file name
+                // instead of its contents
+                $post->setImageFilename($newFilename);
+            }
+            // Fin image
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();

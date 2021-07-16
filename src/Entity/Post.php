@@ -37,7 +37,7 @@ class Post
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $imagefilename;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -114,14 +114,14 @@ class Post
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImageFilename(): ?string
     {
-        return $this->image;
+        return $this->imagefilename;
     }
 
-    public function setImage(string $image): self
+    public function setImageFilename(string $imagefilename): self
     {
-        $this->image = $image;
+        $this->imagefilename = $imagefilename;
 
         return $this;
     }

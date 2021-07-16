@@ -36,12 +36,12 @@ class PostRepository extends ServiceEntityRepository
     {
         $entityManager = $this->getEntityManager();
 
-        // A REVOIR : ajouter archive = true ou false
+        // A REVOIR : ajouter archived = true ou false
 
         $query = $entityManager->createQuery(
-            'SELECT p.id, p.title, p.createdAt, p.slug, p.image
+            'SELECT p.id, p.title, p.createdAt, p.slug, p.imagefilename
             FROM App\Entity\Post p
-            WHERE p.active = :status
+            WHERE p.archived = :status
             ORDER BY p.createdAt ASC'
         )
             ->setParameter('status', true)

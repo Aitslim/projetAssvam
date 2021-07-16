@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $pseudo;
+    private $name;
 
     /**
      * @ORM\Column(type="boolean")
@@ -198,21 +198,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Get the value of pseudo
+     * Get the value of name
      */
-    public function getPseudo()
+    public function getName()
     {
-        return $this->pseudo;
+        return $this->name;
     }
 
     /**
-     * Set the value of pseudo
+     * Set the value of name
      *
      * @return  self
      */
-    public function setPseudo($pseudo)
+    public function setName($name)
     {
-        $this->pseudo = $pseudo;
+        $this->name = $name;
 
         return $this;
     }

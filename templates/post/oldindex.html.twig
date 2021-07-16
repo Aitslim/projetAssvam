@@ -29,9 +29,6 @@
 								</div>
 								<p class="card-text" style="font-size: 14px;">
 									{{ post.content | u.truncate(260, ' ...', false) | raw }}
-									{# 
-																																																															{{ post.content|striptags|length > 160 ? post.content|striptags|slice(1, 160)|raw  : post.content | raw }}
-																																																															#}
 								</p>
 								<a href="" class="card-link">
 									Lire la suite.</a>
