@@ -12,24 +12,25 @@
 				<h2>Actualités</h2>
 				{% for post in lastposts %}
 					<div>
-
 						<div class="card mb-4" style="background-color: #B0C4DE;">
 
 							<div class="card-body bg-light text-dark">
-								<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+								{% if not post.imagefilename is empty %}
+									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+								{% endif %}
+
 								<div class="d-flex justify-content-between">
 									<div>
 										<h4 class="card-title">{{ post.title }}</h4>
 									</div>
 									<div>
 										<sup>
-											Publié le
 											{{ post.createdAt | date("d/m/Y") }}
 										</sup>
 									</div>
 								</div>
 								<p class="card-text" style="font-size: 14px;">
-									{{ post.content | u.truncate(460, ' ...', false) | raw }}
+									{{ post.content | u.truncate(360, ' ...', false) | raw }}
 								</p>
 								<a href="" class="card-link">
 									Lire la suite.</a>

@@ -24,8 +24,10 @@ class PostRepository extends ServiceEntityRepository
         // A REVOIR : ajouter archive = true ou false
 
         return $this->createQueryBuilder('p')
-            ->andWhere('p.active = :status')
-            ->setParameter('status', true)
+            ->andWhere('p.active = :active_status')
+            ->andWhere('p.archived = :archived_false')
+            ->setParameter('active_status', true)
+            ->setParameter('archived_false', false)
             ->orderBy('p.createdAt', 'DESC')
             ->setMaxResults($nb)
             ->getQuery()
@@ -37,14 +39,13 @@ class PostRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         // A REVOIR : ajouter archived = true ou false
-
         $query = $entityManager->createQuery(
             'SELECT p.id, p.title, p.createdAt, p.slug, p.imagefilename
             FROM App\Entity\Post p
-            WHERE p.archived = :status
+            WHERE p.archived = :archived_status
             ORDER BY p.createdAt ASC'
         )
-            ->setParameter('status', true)
+            ->setParameter('archived_status', true)
             ->setMaxResults($nb);
         return $query->getResult();
     }

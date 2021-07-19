@@ -17,10 +17,10 @@ class UserChecker implements UserCheckerInterface
         }
 
         if (!$user->isVerified()) {
-            throw new CustomUserMessageAuthenticationException("Votre Email n'est pas vérifié !");
+            throw new CustomUserMessageAuthenticationException("Votre Email n'a pas été vérifié !");
         }
 
-        // if ($user->getIsBanned()) {
+        // if ($user->getIsSuspended()) {
         //     throw new CustomUserMessageAuthenticationException("Votre compte a été suspendu !");
         // }
     }

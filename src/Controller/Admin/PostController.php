@@ -4,14 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Service\FileUploader;
 use App\Repository\PostRepository;
 use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PostController extends AdminController
 {
@@ -32,7 +32,7 @@ class PostController extends AdminController
     /**
      * @Route("/admin/post/add", name="admin_post_add")
      */
-    public function addPost(Request $request, SluggerInterface $slugger): Response
+    public function addPost(Request $request, FileUploader $fileUploader): Response
     {
         if (!$this->isAdmin()) {
             return $this->redirectToRoute('home');
@@ -45,40 +45,24 @@ class PostController extends AdminController
         if ($form->isSubmitted() && $form->isValid()) {
             //
             $post->setUser($this->getUser());
-            $post->setActive(false);
+
+            // A REVOIR : laisser Active à true pour le Dev
+            $post->setActive(true);
             $post->setArchived(false);
-            //
+
             // Début image
-            /** @var UploadedFile $postimageFile */
-            $postimageFile = $form->get('imagefilename')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($postimageFile) {
-                $originalFilename = pathinfo($postimageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $postimageFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $postimageFile->move(
-                        $this->getParameter('imgposts_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'imageFilename' property to store the PDF file name
-                // instead of its contents
-                $post->setImageFilename($newFilename);
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('imagefilename')->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $post->setImageFilename($imageFileName);
             }
             // Fin image
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
             $this->addFlash('success', 'Article ajouté avec succès !');
             return $this->redirectToRoute('admin_post_list');
         }
@@ -91,7 +75,7 @@ class PostController extends AdminController
     /**
      * @Route("/admin/post/update/{id}", name="admin_post_update", requirements={"id"="\d+"})
      */
-    public function updatePost(Post $post, Request $request): Response
+    public function updatePost(Post $post, Request $request, FileUploader $fileUploader): Response
     {
         if (!$this->isAdmin()) {
             return $this->redirectToRoute('home');
@@ -100,9 +84,19 @@ class PostController extends AdminController
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Début image
+            /** @var UploadedFile $newImageFile */
+            $newImageFile = $form->get('imagefilename')->getData();
+            if ($newImageFile) {
+                $post->setImageFilename($fileUploader->upload($newImageFile));
+            }
+            // Fin image
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+
             $this->addFlash('success', 'Article modifié avec succès !');
             return $this->redirectToRoute('admin_post_list');
         }
@@ -121,7 +115,8 @@ class PostController extends AdminController
             return $this->redirectToRoute('home');
         }
 
-        $post->setActive(($post->getActive()) ? 'false' : 'true');
+        // A REVOIR : Activer/Désactiver un article
+        $post->setActive(($post->getActive()) ? false : true);
         $em = $this->getDoctrine()->getManager();
         $em->persist($post);
         $em->flush();
@@ -141,6 +136,19 @@ class PostController extends AdminController
         $em->remove($post);
         $em->flush();
         $this->addFlash('success', 'Article supprimé !');
+
         return $this->redirectToRoute('admin_post_list');
+    }
+
+    /**
+     * @Route("/admin/post/{id}", name="admin_post_view", requirements={"id"="\d+"})
+     */
+    public function artiste($id, PostRepository $postRepository): Response
+    {
+        $post = $postRepository->findOneBy(['id' => $id]);
+
+        return $this->render('admin/post/view.html.twig', [
+            'post' => $post
+        ]);
     }
 }
