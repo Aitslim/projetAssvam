@@ -13,21 +13,26 @@
 					<div class="card-body">
 						<h2 class="card-title text-primary">Admin</h2>
 
-						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
-						</a>
-
-						<a href="{{ path('admin_category_list') }}">
-							<button type="button" class="btn btn-outline-primary btn-lg">Catégories</button>
-						</a>
 						<a href="{{ path('admin_post_list') }}">
 							<button type="button" class="btn btn-outline-primary btn-lg">Articles</button>
+						</a>
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Utilisateur</button>
 						</a>
 						<a href="">
 							<button type="button" class="btn btn-outline-primary btn-lg">Agenda</button>
 						</a>
 						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Annonces</button>
+							<button type="button" class="btn btn-outline-primary btn-lg">Boîte à idées</button>
+						</a>
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Albums</button>
+						</a>
+						<a href="">
+							<button type="button" class="btn btn-outline-primary btn-lg">Bureau</button>
+						</a>
+						<a href="{{ path('admin_category_list') }}">
+							<button type="button" class="btn btn-outline-primary btn-lg">Catégories</button>
 						</a>
 
 					</div>
@@ -39,113 +44,13 @@
 
 				<a href="{{ path('admin_post_list') }}" class="card bg-primary">
 					<div class="card-body text-center">
-						<p style="color:red" class="card-text">Some text inside the first card</p>
+						<p style="color:white" class="card-text">Some text inside the first card</p>
 					</div>
 				</a>
 
-				<div class="card bg-warning">
-					<div class="card-body text-center">
-						<p class="card-text">Some text inside the second card</p>
-					</div>
-				</div>
-				<div class="card bg-success">
-					<div class="card-body text-center">
-						<p class="card-text">Some text inside the third card</p>
-					</div>
-				</div>
-				<div class="card bg-danger">
-					<div class="card-body text-center">
-						<p class="card-text">Some text inside the fourth card</p>
-					</div>
-				</div>
-				<div class="card bg-light">
-					<div class="card-body text-center">
-						<p class="card-text">Some text inside the fifth card</p>
-					</div>
-				</div>
-				<div class="card bg-info">
-					<div class="card-body text-center">
-						<p class="card-text">Some text inside the sixth card</p>
-					</div>
-				</div>
 			</div>
-			<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Primary card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Secondary card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Success card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Danger card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Warning card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Info card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Light card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-			<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-					<h5 class="card-title">Dark card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
+
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="list-group">
-			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1">List group item heading</h5>
-					<small>3 days ago</small>
-				</div>
-				<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-				<small>Donec id elit non mi porta.</small>
-			</a>
-			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="d-flex w-100 justify-content-between">
-					<h5 class="mb-1">List group item heading</h5>
-					<small class="text-muted">3 days ago</small>
-				</div>
-				<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-				<small class="text-muted">Donec id elit non mi porta.</small>
-			</a>
-		</div>
-	</div>
 </div>{% endblock %}

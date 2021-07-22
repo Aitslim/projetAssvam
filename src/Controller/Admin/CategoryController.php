@@ -9,7 +9,6 @@ use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AdminController
 {
@@ -22,8 +21,11 @@ class CategoryController extends AdminController
             return $this->redirectToRoute('home');
         }
 
+        $categories = $categoryRepository->findCategoryPosts();
+        // dd($categories);
+
         return $this->render('admin/category/list.html.twig', [
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categories,
         ]);
     }
 
@@ -45,7 +47,7 @@ class CategoryController extends AdminController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'Votre Cetegorie a été ajouté avec succes !');
+            $this->addFlash('success', 'Catégorie ajouté avec succes !');
 
             return $this->redirectToRoute('admin_category_list');
         }
@@ -71,12 +73,11 @@ class CategoryController extends AdminController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'Votre Cetegorie a été modifié avec succes !');
-
+            $this->addFlash('success', 'Categorie modifié avec succes !');
             return $this->redirectToRoute('admin_category_list');
         }
 
-        return $this->render('admin/category/add.html.twig', [
+        return $this->render('admin/category/update.html.twig', [
             'form' => $form->createView(),
         ]);
     }

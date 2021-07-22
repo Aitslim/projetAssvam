@@ -1,25 +1,20 @@
 <!-- Admin : Search and Manage -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<div class="container-fluid">
-		<div class="collapse navbar-collapse" id="navbarColor01">
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item">
-					<a href="{{ path('admin_post_add') }}" class="btn btn-primary">Ajouter</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">About</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<input class="form-control me-sm-2" type="text" placeholder="Titre">
-				<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-			</form>
+		<div class="row">
+			<div class="float-right">
+				<a href="" class="btn btn-primary btn-sm">Modifier</a>
+				<button type="button" class="btn btn-secondary">Publier</button>
+				<button type="button" class="btn btn-success">Archiver</button>
+				<a href="" class="btn btn-danger btn-sm">Supprimer</a>
+				<a href="" class="btn btn-primary btn-sm">Retour à la liste</a>
+			</div>
+			<div class="flex-row-reverse">
+				<form class="d-flex">
+					<input class="form-control me-sm-2" type="text" placeholder="Titre">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </nav>

@@ -10,17 +10,39 @@
 			<ol class="breadcrumb mb-4">
 				<li class="breadcrumb-item active">Modifier un article</li>
 			</ol>
+			<fieldset>
+				{# <legend class="mt-4">Switches</legend> #}
 
-			{{ form_start(form) }}
-			{{ form_row(form.title) }}
-			{{ form_row(form.content) }}
-			{{ form_row(form.category) }}
+				{{ form_start(form) }}
+				{{ form_row(form.title) }}
+				{{ form_row(form.content) }}
 
-			{{ form_row(form.imagefilename) }}
+				<div class="row">
+					<div class="col-8">
+						<div class="row">
+							<div class="col-4">
+								{{ form_row(form.category) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4">
+								{{ form_row(form.imagefilename) }}
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						{% if not imagepost is empty %}
+							<img src="{{ asset('assets/images/uploads/posts/' ~ imagepost) }}" alt="" class="img-thumbnail" width="200" height="200">
+							{# <img class="img-fluid" src="{{ asset('assets/images/uploads/posts/' ~ imagepost) }}" alt="Chania" width="200" height="200"> #}
+						{% endif %}
+					</div>
+				</div>
 
-			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_post_list') }}">Valider</button>
-			{{ form_end(form) }}
+				<button type="submit" class="btn btn-primary btn-sm" action="{{ path('admin_post_list') }}">Valider</button>
+				<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
 
+				{{ form_end(form) }}
+			</fieldset>
 		</div>
 	</main>
 {% endblock %}

@@ -18,15 +18,17 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            /*->add('slug')*/
+            ->add('title', TextType::class, [
+                "label" => "Titre",
+            ])
             ->add('content', CKEditorType::class, [
                 "label" => "Contenu",
             ])
-            /*->add('active')*/
             ->add('category', EntityType::class, [
-                'class' => Category::class
+                'class' => Category::class,
+                "label" => "Catégorie",
             ])
+            ->add('active')
             ->add('imagefilename', FileType::class, [
                 'label' => 'Image (jpg, png)',
                 // unmapped means that this field is not associated to any entity property
@@ -36,18 +38,19 @@ class PostType extends AbstractType
                 'required' => false,
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
-                /*
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Merci de charger une image valide',
-                    ])
-                ],
-*/
+
+                // A REVOIR
+                // 'constraints' => [
+                //     new File([
+                //         'maxSize' => '1024k',
+                //         'mimeTypes' => [
+                //             'image/jpg',
+                //             'image/png',
+                //         ],
+                //         'mimeTypesMessage' => 'Merci de charger une image valide',
+                //     ])
+                // ],
+
             ]);
     }
 

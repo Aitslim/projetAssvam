@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,25 +23,31 @@ class homeController extends AbstractController
         ]);
     }
 
+    // /**
+    //  * --@Route("/post/view/{slug}", name="home_post_view")
+    //  */
+    // public function viewpostBis(Post $post, PostRepository $postRepository): Response
+    // {
+    //     $lastposts = $postRepository->findOneBy();
+    //     $oldposts = $postRepository->findOldPosts();
+
+    //     return $this->render('home/index.html.twig', [
+    //         'lastposts' => $lastposts,
+    //         'oldposts' => $oldposts,
+    //     ]);
+    // }
+
     /**
-     * @Route("/post/{slug}", name="post_view", methods={"GET"})
+     * @Route("/post/view/{id}", name="home_post_view", requirements={"id"="\d+"})
      */
-    public function viewpost(Post $post, PostRepository $postRepository): Response
+    public function viewpost($id, PostRepository $postRepository): Response
     {
+        $lastposts = $postRepository->findBy(['id' => $id]);
         $oldposts = $postRepository->findOldPosts();
 
-        return $this->render('home/view.html.twig', [
-            'post' => $post,
+        return $this->render('home/index.html.twig', [
+            'lastposts' => $lastposts,
             'oldposts' => $oldposts,
         ]);
-    }
-
-    /**
-     * @Route("/test", name="test")
-     */
-    public function test(PostRepository $postRepository): Response
-    {
-        $posts = $postRepository->findLastPosts();
-        dd($posts);
     }
 }

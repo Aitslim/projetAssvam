@@ -9,7 +9,6 @@ use App\Repository\PostRepository;
 use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -18,14 +17,23 @@ class PostController extends AdminController
     /**
      * @Route("/admin/post", name="admin_post_list")
      */
-    public function indexPost(PostRepository $postRepository): Response
+    public function indexPost(Request $request, PostRepository $postRepository): Response
     {
         if (!$this->isAdmin()) {
             return $this->redirectToRoute('home');
         }
 
+        $keysearch = $request->request->get('keytitle');
+
+        if (isset($keysearch) && $keysearch !== '') {
+            $posts = $postRepository->findPostsByTitle($keysearch);
+        } else {
+            // A REVOIR : ne pas limiter. Prévoir la pagination
+            $posts = $postRepository->findAdminPosts(100);
+        }
+
         return $this->render('admin/post/list.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $posts
         ]);
     }
 
@@ -46,7 +54,7 @@ class PostController extends AdminController
             //
             $post->setUser($this->getUser());
 
-            // A REVOIR : laisser Active à true pour le Dev
+            // A REVOIR : laisser Active à true pour le Dev et enlever archived
             $post->setActive(true);
             $post->setArchived(false);
 
@@ -85,13 +93,11 @@ class PostController extends AdminController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Début image
             /** @var UploadedFile $newImageFile */
             $newImageFile = $form->get('imagefilename')->getData();
             if ($newImageFile) {
                 $post->setImageFilename($fileUploader->upload($newImageFile));
             }
-            // Fin image
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
@@ -102,6 +108,7 @@ class PostController extends AdminController
         }
 
         return $this->render('admin/post/update.html.twig', [
+            'imagepost' => $post->getImageFilename(), // renvoi en cours
             'form' => $form->createView(),
         ]);
     }
@@ -120,7 +127,8 @@ class PostController extends AdminController
         $em = $this->getDoctrine()->getManager();
         $em->persist($post);
         $em->flush();
-        return new Response('true');
+        // return new Response('true');
+        return $this->redirectToRoute('admin_post_list');
     }
 
     /**
@@ -143,7 +151,7 @@ class PostController extends AdminController
     /**
      * @Route("/admin/post/{id}", name="admin_post_view", requirements={"id"="\d+"})
      */
-    public function artiste($id, PostRepository $postRepository): Response
+    public function viewPost($id, PostRepository $postRepository): Response
     {
         $post = $postRepository->findOneBy(['id' => $id]);
 

@@ -1,0 +1,22 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block title %}Modifier une categoerie
+{% endblock %}
+
+{% block body %}
+
+	<main>
+		<div class="container-fluid px-4">
+			<h5>Modifier une categorie</h5>
+
+			{{ form_start(form) }}
+			{{ form_row(form.name) }}
+			{# A REVOIR : pas de parent vide !! #}
+			{{ form_row(form.parent) }}
+
+			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_category_list') }}">Valider</button>
+			{{ form_end(form) }}
+		</div>
+	</main>
+
+{% endblock %}

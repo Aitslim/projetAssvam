@@ -11,33 +11,59 @@
 			<div class="col-md-12 col-sm-12 col-lg-12">
 				<h2>Actualités</h2>
 				<div>
-					<button type="button" class="btn btn-primary">Modifier</button>
-					<button type="button" class="btn btn-secondary">Publier</button>
-					<button type="button" class="btn btn-success">Archiver</button>
-					<button type="button" class="btn btn-danger">Supprimer</button>
-					<a href="{{ path('admin_post_list', {id: post.id}) }}" class="btn btn-primary btn-sm">Retour à la liste</a>
+					<a href="{{ path('admin_post_update', {id: post.id}) }}" class="btn btn-success btn-sm">Modifier</a>
+					{% if post.active %}
+						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Archiver</a>
+					{% else %}
+						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Publier</a>
+					{% endif %}
+					<a href="{{ path('admin_post_delete', {id: post.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+					<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Retour à la liste</a>
 				</div>
 
-				<div class="card mb-4" style="background-color: #B0C4DE;">
-					<div class="card-body bg-light text-dark">
-						{% if not post.imagefilename is empty %}
-							<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
-						{% endif %}
-						<div class="d-flex justify-content-between">
-							<div>
-								<h4 class="card-title">{{ post.title }}</h4>
-							</div>
-							<div>
-								<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
+				{# Début #}
+				<div class="row">
+					<div class="col-md-8 col-sm-8 col-lg-8">
+						<div class="card mb-4" style="background-color: #B0C4DE;">
+							<div class="card-body bg-light text-dark">
+								{% if not post.imagefilename is empty %}
+									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+								{% endif %}
+								<div class="d-flex justify-content-between">
+									<div>
+										<h4 class="card-title">{{ post.title }}</h4>
+									</div>
+									<div>
+										<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
+									</div>
+								</div>
+								<p class="card-text" style="font-size: 14px;">
+									{{ post.content | raw }}
+								</p>
 							</div>
 						</div>
-						<p class="card-text" style="font-size: 14px;">
-							{{ post.content | raw }}
-						</p>
+					</div>
+					<div class="col-md-4 col-sm-4 col-lg-4">
+						<div class="card mb-4" style="background-color: #B0C4DE;">
+							<p>Catégoie   :
+								{{ post.category.name }}</p>
+							<p>Publié par :
+								{{ post.user.name }}
+								email :
+								{{ post.user.email }}</p>
+							<p>Crée Le :
+								{{ post.createdAt | date("d/m/Y") }}
+							</p>
+							<p>Modifié le :
+								{{ post.modifiedAt | date("d/m/Y") }}</p>
+							<p>Actif :
+								{{ post.active }}
+							</p>
+						</div>
 					</div>
 				</div>
+				{# Fin #}
 			</div>
 		</div>
 	</div>
-
 {% endblock %}

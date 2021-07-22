@@ -1,5 +1,4 @@
 {% extends 'admin/admin_base.html.twig' %}
-{# {% include "admin/shared/search_manage.html.twig" %} #}
 
 {% block title %}Liste des articles
 {% endblock %}
@@ -9,36 +8,54 @@
 		<div class="container-fluid px-4">
 			<div class="card mb-4">
 				<div class="card-header">
-					{% include "admin/shared/search_manage.html.twig" %}
+
+					<div class="row">
+						<div class="col-8">
+							<a href="{{ path('admin_post_add') }}" class="btn btn-primary btn-sm">Ajouter</a>
+						</div>
+						<div class="col-4">
+							<form class="d-flex" method="POST" action="{{ path('admin_post_list') }}">
+								<input name="keytitle" value="" class="form-control me-sm-2" type="text" placeholder="Titre" required>
+								<button class="btn btn-secondary my-2 my-sm-0" type="submit">Rechercher</button>
+							</form>
+						</div>
+					</div>
+
 				</div>
+
 				<table class="table table-striped table-hover table-bordered table-sm">
 					<thead>
 						<tr>
-							<th scope="col">N°</th>
+							<th scope="col">Id</th>
 							<th scope="col">Titre</th>
 							<th scope="col">Image</th>
 							<th scope="col">Catégorie</th>
-							<th scope="col">Date</th>
+							<th scope="col">Crée</th>
+							<th scope="col">Modifié</th>
+							<th scope="col">Activé</th>
+							<th scope="col">Archivé</th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
-							<th scope="col">N°</th>
+							<th scope="col">Id</th>
 							<th scope="col">Titre</th>
 							<th scope="col">Image</th>
 							<th scope="col">Catégorie</th>
-							<th scope="col">Date</th>
+							<th scope="col">Crée</th>
+							<th scope="col">Modifié</th>
+							<th scope="col">Activé</th>
+							<th scope="col">Archivé</th>
 						</tr>
 					</tfoot>
 
 					<tbody>
 
 						{% for post in posts %}
-
 							<tr>
 								<td>{{ post.id }}</td>
 								<td>
-									<a href="{{ path('admin_post_view', {id: post.id}) }}">{{ post.title | slice(0, 20) }}</a>
+									<a href="{{ path('admin_post_view', {id: post.id}) }}">{{ post.title | slice(0, 35) }}</a>
 								</td>
 								<td>
 									{% if not post.imagefilename is empty %}
@@ -47,16 +64,12 @@
 								</td>
 								<td>{{ post.category.name }}</td>
 								<td>{{ post.createdAt | date("d/m/Y") }}</td>
-								<td>
-									<a href="{{ path('admin_post_update', {id: post.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
-								</td>
+								<td>{{ post.modifiedAt | date("d/m/Y") }}</td>
+								<td>{{ post.active }}</td>
 							</tr>
-
 						{% endfor %}
-
 					</tbody>
 				</table>
-				{# <a href="{{ path('admin_post_add') }}" class="btn btn-primary">Ajouter</a> #}
 			</div>
 		</div>
 	</main>

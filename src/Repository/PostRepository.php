@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Post;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,51 +23,57 @@ class PostRepository extends ServiceEntityRepository
 
     public function findLastPosts(int $nb = 10)
     {
-        // A REVOIR : ajouter archive = true ou false
-
         return $this->createQueryBuilder('p')
             ->andWhere('p.active = :active_status')
-            ->andWhere('p.archived = :archived_false')
             ->setParameter('active_status', true)
-            ->setParameter('archived_false', false)
             ->orderBy('p.createdAt', 'DESC')
             ->setMaxResults($nb)
             ->getQuery()
             ->getResult();
     }
 
-    public function findOldPosts(int $nb = 5): array
+    public function findOldPosts(int $nb = 10): array
     {
         $entityManager = $this->getEntityManager();
 
-        // A REVOIR : ajouter archived = true ou false
         $query = $entityManager->createQuery(
             'SELECT p.id, p.title, p.createdAt, p.slug, p.imagefilename
             FROM App\Entity\Post p
-            WHERE p.archived = :archived_status
+            WHERE p.active = :active_status
             ORDER BY p.createdAt ASC'
         )
-            ->setParameter('archived_status', true)
+            ->setParameter('active_status', true)
             ->setMaxResults($nb);
+
         return $query->getResult();
     }
 
-    // /**
-    //  * @return Post[] Returns an array of Post objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    // A REVOIR : limit
+    public function findAdminPosts(int $nb = 50)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            // ->andWhere('p.active = :active_status')
+            // ->setParameter('active_status', true)
+            ->orderBy('p.createdAt', 'DESC', 'p.active')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Post[] Returns an array of Post objects
+     */
+    public function findPostsByTitle(string $value)
+    {
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.title LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Post
