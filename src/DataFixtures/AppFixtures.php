@@ -42,8 +42,8 @@ class AppFixtures extends Fixture
             ->setPassword($this->encoder->encodePassword($user2, 'toto123456'));
         $manager->persist($user2);
 
-        // Autres 7 Users
-        for ($i = 0; $i < 5; $i++) {
+        // Autres 4 Users
+        for ($i = 0; $i < 4; $i++) {
             $user = new User();
             $user->setName($faker->name())
                 ->setEmail($faker->email())
