@@ -68,6 +68,11 @@ class Post
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imagefilename;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -177,6 +182,18 @@ class Post
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImagefilename(): ?string
+    {
+        return $this->imagefilename;
+    }
+
+    public function setImagefilename(?string $imagefilename): self
+    {
+        $this->imagefilename = $imagefilename;
 
         return $this;
     }
