@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
+// use Faker\Factory;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Category;
@@ -54,21 +54,20 @@ class AppFixtures extends Fixture
 
         // Create 8 Categories !
         $categorie = [
-            ['Nature', null],
-            ['Evénement', null],
-            ['Culture', null],
-            ['Actualité', null],
-            ['Ecologie', null], // 1
-            ['Poésie', null],   // 3
-            ['Litérature', null], //3
-            ['Spectacle', null] // 3
+            ['Nature'],
+            ['Evénement'],
+            ['Culture'],
+            ['Actualité'],
+            ['Ecologie'],
+            ['Poésie'],
+            ['Litérature'],
+            ['Spectacle']
         ];
 
         for ($i = 0; $i <= 7; $i++) {
 
             $category = new Category();
-            $category->setName($categorie[$i][0])
-                ->setParent($categorie[$i][1]);
+            $category->setName($categorie[$i][0]);
 
             $manager->persist($category);
 
@@ -77,7 +76,6 @@ class AppFixtures extends Fixture
 
                 $post = new Post();
                 $post->setTitle($faker->sentence(5))
-                    // ->setContent($faker->text())
                     ->setContent($faker->paragraph(80, false))
                     ->setCategory($category)
                     ->setUser((rand(1, 8) > 5) ? $user1 : $user2)

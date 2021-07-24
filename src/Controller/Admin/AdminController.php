@@ -27,7 +27,7 @@ class AdminController extends AbstractController
     {
         // Si user non connecté
         if ($this->getUser()) {
-            // false si user n'est pas "ROLE_ADMIN"
+            // false si user n'a pas "ROLE_ADMIN"
             return in_array("ROLE_ADMIN", $this->getUser()->getRoles());
         }
         return false;

@@ -22,7 +22,6 @@ class CategoryController extends AdminController
         }
 
         $categories = $categoryRepository->findCategoryPosts();
-        // dd($categories);
 
         return $this->render('admin/category/list.html.twig', [
             'categories' => $categories,

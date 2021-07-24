@@ -11,8 +11,6 @@
 
 			{{ form_start(form) }}
 			{{ form_row(form.name) }}
-			{# A REVOIR : pas de parent vide !! #}
-			{{ form_row(form.parent) }}
 
 			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_category_list') }}">Valider</button>
 			{{ form_end(form) }}

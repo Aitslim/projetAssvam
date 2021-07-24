@@ -63,15 +63,15 @@ class Post
     private $user;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imagefilename;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imagefilename;
 
     public function getId(): ?int
     {
@@ -174,18 +174,6 @@ class Post
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getImagefilename(): ?string
     {
         return $this->imagefilename;
@@ -194,6 +182,18 @@ class Post
     public function setImagefilename(?string $imagefilename): self
     {
         $this->imagefilename = $imagefilename;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

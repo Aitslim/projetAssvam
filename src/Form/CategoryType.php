@@ -18,10 +18,6 @@ class CategoryType extends AbstractType
                 "label" => "Nom de la catégorie",
             ])
             // ->add('slug')
-            ->add('parent', EntityType::class, [
-                'class' => Category::class
-            ])
-            // ->add('Valider', SubmitType::class)
         ;
     }
 
