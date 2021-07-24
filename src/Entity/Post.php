@@ -35,11 +35,6 @@ class Post
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $imagefilename;
-
-    /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
@@ -110,18 +105,6 @@ class Post
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getImageFilename(): ?string
-    {
-        return $this->imagefilename;
-    }
-
-    public function setImageFilename(string $imagefilename): self
-    {
-        $this->imagefilename = $imagefilename;
 
         return $this;
     }
