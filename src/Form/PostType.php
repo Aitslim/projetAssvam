@@ -4,10 +4,12 @@ namespace App\Form;
 
 use App\Entity\Post;
 use App\Entity\Category;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +27,13 @@ class PostType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                "label" => "Catégorie",
+                //
+                // 'query_builder' => function (EntityRepository $er) {
+                //     return $er->createQueryBuilder('c')
+                //         ->orderBy('c.name', 'ASC');
+                // },
+                //
+                "label" => 'Catégorie',
             ])
             ->add('active')
             ->add('imagefilename', FileType::class, [
@@ -39,17 +47,16 @@ class PostType extends AbstractType
                 // in the associated entity, so you can use the PHP constraint classes
 
                 // A REVOIR
-                // 'constraints' => [
-                //     new File([
-                //         'maxSize' => '1024k',
-                //         'mimeTypes' => [
-                //             'image/jpg',
-                //             'image/png',
-                //         ],
-                //         'mimeTypesMessage' => 'Merci de charger une image valide',
-                //     ])
-                // ],
-
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Merci de charger une image valide',
+                    ])
+                ],
             ]);
     }
 

@@ -31,20 +31,13 @@
 										</sup>
 									</div>
 								</div>
-								{% if lastposts | length > 1 %}
-									<p class="card-text" style="font-size: 14px;">
-										{{ post.content | u.truncate(500, ' ...', false) | raw }}
-									</p>
-									<p>{{ post.content | length }}</p>
-									<a href="{{ path('home_post_view', {id: post.id}) }}" class="card-link">
-										Lire la suite.
-									</a>
-								{% else %}
-									<p class="card-text" style="font-size: 14px;">
-										{{ post.content | raw }}
-									</p>
-								{% endif %}
-
+								<p class="card-text" style="font-size: 14px;">
+									{{ post.content | u.truncate(500, ' ...', false) | raw }}
+								</p>
+								<p>{{ post.content | length }}</p>
+								<a href="{{ path('home_post_view', {id: post.id}) }}" class="card-link">
+									Lire la suite.
+								</a>
 							</div>
 
 						</div>
