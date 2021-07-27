@@ -8,13 +8,13 @@ use App\Entity\User;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
     private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordHasherInterface $encoder)
     {
         $this->encoder = $encoder;
     }
@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
             ->setEmail('admin1@admin.fr')
             ->setRoles(["ROLE_ADMIN"])
             ->setisVerified(true)
-            ->setPassword($this->encoder->encodePassword($user1, 'Moi123456'));
+            ->setPassword($this->encoder->hashPassword($user1, 'Moi123456'));
         $manager->persist($user1);
 
         // User 2
@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
         $user2->setName('toto1')
             ->setEmail('toto1@gmail.com')
             ->setisVerified(true)
-            ->setPassword($this->encoder->encodePassword($user2, 'toto123456'));
+            ->setPassword($this->encoder->hashPassword($user2, 'toto123456'));
         $manager->persist($user2);
 
         // Autres 4 Users
@@ -48,7 +48,7 @@ class AppFixtures extends Fixture
             $user->setName($faker->name())
                 ->setEmail($faker->email())
                 ->setisVerified(true)
-                ->setPassword($this->encoder->encodePassword($user, 'toto123456'));
+                ->setPassword($this->encoder->hashPassword($user, 'toto123456'));
             $manager->persist($user);
         }
 
