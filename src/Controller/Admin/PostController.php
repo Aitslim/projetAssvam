@@ -7,6 +7,7 @@ use App\Form\PostType;
 use App\Service\FileUploader;
 use App\Repository\PostRepository;
 use App\Controller\Admin\AdminController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,6 +97,11 @@ class PostController extends AdminController
             /** @var UploadedFile $newImageFile */
             $newImageFile = $form->get('imagefilename')->getData();
             if ($newImageFile) {
+                if ($fileUploader->getTargetDirectory()) {
+                    $oldImageFile = $fileUploader->getTargetDirectory() . '/' . $post->getImageFilename();
+                    $fs = new Filesystem();
+                    $fs->remove($oldImageFile);
+                }
                 $post->setImageFilename($fileUploader->upload($newImageFile));
             }
 
