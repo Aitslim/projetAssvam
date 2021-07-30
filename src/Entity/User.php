@@ -52,9 +52,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $IsSuspended = false;
+
+    /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="user")
      */
     private $posts;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Project::class, mappedBy="user")
+     */
+    private $projects;
 
     /**
      * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="user")
@@ -64,6 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->projects = new ArrayCollection();
         $this->evaluations = new ArrayCollection();
     }
 
@@ -175,6 +186,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function IsSuspended(): bool
+    {
+        return $this->IsSuspended;
+    }
+
+    public function setIsSuspended(bool $IsSuspended): self
+    {
+        $this->IsSuspended = $IsSuspended;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Post[]
      */
@@ -249,6 +272,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($evaluation->getUser() === $this) {
                 $evaluation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getUser() === $this) {
+                $project->setUser(null);
             }
         }
 

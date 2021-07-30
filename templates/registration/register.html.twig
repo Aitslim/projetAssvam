@@ -12,7 +12,7 @@
 						<h5 class="card-title text-center">Inscription</h5>
 
 						{% for flashError in app.flashes('verify_email_error') %}
-							<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+							<div class="alert alert-danger text-center" role="alert">{{ flashError }}</div>
 						{% endfor %}
 
 						{{ form_start(registrationForm) }}

@@ -6,6 +6,7 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -30,12 +31,14 @@ class Project
     private $name;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $modifiedAt;
 
@@ -55,7 +58,13 @@ class Project
     private $sponsor;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="projet")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="project")
      */
     private $evaluations;
 
@@ -63,6 +72,7 @@ class Project
     {
         $this->evaluations = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -98,24 +108,24 @@ class Project
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+    // public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    // {
+    //     $this->createdAt = $createdAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getModifiedAt(): ?\DateTimeImmutable
     {
         return $this->modifiedAt;
     }
 
-    public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
-    {
-        $this->modifiedAt = $modifiedAt;
+    // public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
+    // {
+    //     $this->modifiedAt = $modifiedAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getBudget(): ?int
     {
@@ -153,6 +163,18 @@ class Project
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Evaluation[]
      */
@@ -165,7 +187,7 @@ class Project
     {
         if (!$this->evaluations->contains($evaluation)) {
             $this->evaluations[] = $evaluation;
-            $evaluation->setProjet($this);
+            $evaluation->setProject($this);
         }
 
         return $this;
@@ -175,8 +197,8 @@ class Project
     {
         if ($this->evaluations->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
-            if ($evaluation->getProjet() === $this) {
-                $evaluation->setProjet(null);
+            if ($evaluation->getProject() === $this) {
+                $evaluation->setProject(null);
             }
         }
 

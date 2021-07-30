@@ -19,6 +19,62 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    public function findLastProjets(int $nb = 10)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.active = :active_status')
+            ->setParameter('active_status', true)
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOldProjets(int $nb = 10): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        // A REVOIR : propriétés de Project
+        $query = $entityManager->createQuery(
+            'SELECT p.id, p.title, p.createdAt, p.slug, p.imagefilename
+            FROM App\Entity\Projet p
+            WHERE p.active = :active_status
+            ORDER BY p.createdAt ASC'
+        )
+            ->setParameter('active_status', true)
+            ->setMaxResults($nb);
+
+        return $query->getResult();
+    }
+
+    // A REVOIR : limit
+    public function findAdminProjets(int $nb = 50)
+    {
+        return $this->createQueryBuilder('p')
+            // ->andWhere('p.active = :active_status')
+            // ->setParameter('active_status', true)
+            ->orderBy('p.createdAt', 'DESC', 'p.active')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Projet[] Returns an array of Projet objects
+     */
+    public function findProjetsByTitle(string $value)
+    {
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.title LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Project[] Returns an array of Project objects
     //  */

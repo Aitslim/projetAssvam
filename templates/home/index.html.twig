@@ -9,8 +9,7 @@
 
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-lg-8">
-				<h2>Actualités :
-					{{ lastposts | length }}</h2>
+				<h2>Actualités</h2>
 
 				{% for post in lastposts %}
 					<div>
@@ -18,7 +17,7 @@
 
 							<div class="card-body bg-light text-dark">
 								{% if not post.imagefilename is empty %}
-									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-fluid img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
 								{% endif %}
 
 								<div class="d-flex justify-content-between">
@@ -32,7 +31,8 @@
 									</div>
 								</div>
 								<p class="card-text" style="font-size: 14px;">
-									{{ post.content | u.truncate(500, ' ...', false) | raw }}
+									{# {{ post.content | u.truncate(500, ' ...', false) | raw }} #}
+									{{ post.content | u.truncate(2500, ' ...', false) | raw }}
 								</p>
 								<p>{{ post.content | length }}</p>
 								<a href="{{ path('home_post_view', {id: post.id}) }}" class="card-link">

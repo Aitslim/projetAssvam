@@ -30,7 +30,7 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findOldPosts(int $nb = 10): array
+    public function findOldPosts(int $nb = 15): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -40,19 +40,16 @@ class PostRepository extends ServiceEntityRepository
             WHERE p.active = :active_status
             ORDER BY p.createdAt ASC'
         )
-            ->setParameter('active_status', true)
+            ->setParameter('active_status', false)
             ->setMaxResults($nb);
 
         return $query->getResult();
     }
 
-    // A REVOIR : limit
-    public function findAdminPosts(int $nb = 50)
+    public function findAdminPosts(int $nb = 15)
     {
         return $this->createQueryBuilder('p')
-            // ->andWhere('p.active = :active_status')
-            // ->setParameter('active_status', true)
-            ->orderBy('p.createdAt', 'DESC', 'p.active')
+            ->orderBy('p.modifiedAt', 'DESC', 'p.active')
             ->setMaxResults($nb)
             ->getQuery()
             ->getResult();

@@ -5,19 +5,19 @@ namespace App\Controller\Admin;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
-use App\Controller\Admin\AdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CategoryController extends AdminController
+class CategoryController extends AbstractController
 {
     /**
      * @Route("/admin/category/", name="admin_category_list")
      */
     public function indexCategory(CategoryRepository $categoryRepository): Response
     {
-        if (!$this->isAdmin()) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
 
@@ -33,7 +33,7 @@ class CategoryController extends AdminController
      */
     public function addCategory(Request $request): Response
     {
-        if (!$this->isAdmin()) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
 
@@ -47,7 +47,6 @@ class CategoryController extends AdminController
             $em->flush();
 
             $this->addFlash('success', 'Catégorie ajouté avec succes !');
-
             return $this->redirectToRoute('admin_category_list');
         }
 
@@ -61,7 +60,7 @@ class CategoryController extends AdminController
      */
     public function updateCategory(Category $category, Request $request): Response
     {
-        if (!$this->isAdmin()) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
 

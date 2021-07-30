@@ -16,12 +16,16 @@ class UserChecker implements UserCheckerInterface
             return;
         }
 
-        if (!$user->isVerified()) {
-            throw new CustomUserMessageAuthenticationException("Votre Email n'a pas été vérifié !");
+        // if (!$user->isVerified()) {
+        //     throw new CustomUserMessageAuthenticationException("Votre adresse Email n'a pas été vérifiée !");
+        // }
+
+        if ($user->IsSuspended()) {
+            throw new CustomUserMessageAuthenticationException("Votre compte a été suspendu !");
         }
 
-        // if ($user->getIsSuspended()) {
-        //     throw new CustomUserMessageAuthenticationException("Votre compte a été suspendu !");
+        // if ($user->getIsBanned()) {
+        //     throw new CustomUserMessageAuthenticationException("You're banned !");
         // }
     }
 

@@ -1,0 +1,64 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block title %}Liste des utilisateurs
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="container-fluid px-4">
+			<div class="card mb-4">
+				<div class="card-header">
+					<div class="row">
+						<div class="text-center">
+							Liste des utilisateurs
+						</div>
+					</div>
+				</div>
+				<table class="table table-hover table-striped table-bordered table-responsive-md table-sm">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Roles</th>
+							<th>Mail confirmé</th>
+							<th>Suspendu</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Roles</th>
+							<th>Mail confirmé</th>
+							<th>Suspendu</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.id }}</td>
+								<td>
+									<a href="{{ path('admin_user_update', {id: user.id}) }}">{{ user.name }}</a>
+								</td>
+								<td>{{ user.email }}</td>
+								<td>
+									{% for unrole in user.roles %}
+										{{ unrole }}
+									{% endfor %}
+								</td>
+								<td>
+									{{ user.isVerified ? '<i class="fas fa-check text-primary"></i>' : '' }}
+								</td>
+								<td>
+									{{ user.IsSuspended ? '<i class="fas fa-minus-circle text-danger"></i>' : '' }}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+{% endblock %}

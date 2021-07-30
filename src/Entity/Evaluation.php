@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvaluationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,7 +39,7 @@ class Evaluation
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="evaluations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $projet;
+    private $project;
 
     public function getId(): ?int
     {
@@ -80,14 +82,14 @@ class Evaluation
         return $this;
     }
 
-    public function getProjet(): ?Project
+    public function getProject(): ?Project
     {
-        return $this->projet;
+        return $this->project;
     }
 
-    public function setProjet(?Project $projet): self
+    public function setProject(?Project $project): self
     {
-        $this->projet = $projet;
+        $this->project = $project;
 
         return $this;
     }

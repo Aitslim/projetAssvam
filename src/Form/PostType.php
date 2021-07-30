@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PostType extends AbstractType
 {
@@ -21,21 +22,21 @@ class PostType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 "label" => "Titre",
+                "required" => true,
             ])
             ->add('content', CKEditorType::class, [
                 "label" => "Contenu",
+                "required" => true,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                //
-                // 'query_builder' => function (EntityRepository $er) {
-                //     return $er->createQueryBuilder('c')
-                //         ->orderBy('c.name', 'ASC');
-                // },
-                //
                 "label" => 'Catégorie',
+                "required" => true,
             ])
-            ->add('active')
+            ->add('active', CheckboxType::class, [
+                "label" => "Actif",
+                "required" => false,
+            ])
             ->add('imagefilename', FileType::class, [
                 'label' => 'Image (jpg, png)',
                 // unmapped means that this field is not associated to any entity property

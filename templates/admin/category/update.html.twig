@@ -12,7 +12,9 @@
 			{{ form_start(form) }}
 			{{ form_row(form.name) }}
 
-			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_category_list') }}">Valider</button>
+			<button type="submit" class="btn btn-primary btn-sm">Valider</button>
+			<a href="{{ path('admin_category_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+
 			{{ form_end(form) }}
 		</div>
 	</main>

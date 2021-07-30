@@ -13,7 +13,8 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-        if (!$this->isAdmin()) {
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
 
@@ -23,13 +24,12 @@ class AdminController extends AbstractController
     }
 
     // Toutes les Routes /admin/.... passent d'abbord ici !
-    protected function isAdmin()
-    {
-        // Si user non connecté
-        if ($this->getUser()) {
-            // false si user n'a pas "ROLE_ADMIN"
-            return in_array("ROLE_ADMIN", $this->getUser()->getRoles());
-        }
-        return false;
-    }
+    // Si Role n'est pas ADMIN = les routes sont fermées.
+    // protected function isAdmin()
+    // {
+    //     if ($this->getUser()) {
+    //         return in_array("ROLE_ADMIN", $this->getUser()->getRoles());
+    //     }
+    //     return false;
+    // }
 }

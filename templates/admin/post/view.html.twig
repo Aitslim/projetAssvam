@@ -5,65 +5,45 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid" style="margin-top:30px">
+	<main>
+		<div class="container-fluid px-4">
 
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-lg-12">
+			<div class="row">
 				<h2>Actualités</h2>
 				<div>
 					<a href="{{ path('admin_post_update', {id: post.id}) }}" class="btn btn-success btn-sm">Modifier</a>
 					{% if post.active %}
-						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Archiver</a>
+						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Désactiver</a>
 					{% else %}
-						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Publier</a>
+						<a href="{{ path('admin_post_activate', {id: post.id}) }}" class="btn btn-secondary btn-sm">Activer</a>
 					{% endif %}
 					<a href="{{ path('admin_post_delete', {id: post.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
 					<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Retour à la liste</a>
 				</div>
+			</div>
 
-				{# Début #}
-				<div class="row">
-					<div class="col-md-8 col-sm-8 col-lg-8">
-						<div class="card mb-4" style="background-color: #B0C4DE;">
-							<div class="card-body bg-light text-dark">
-								{% if not post.imagefilename is empty %}
-									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
-								{% endif %}
-								<div class="d-flex justify-content-between">
-									<div>
-										<h4 class="card-title">{{ post.title }}</h4>
-									</div>
-									<div>
-										<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
-									</div>
-								</div>
-								<p class="card-text" style="font-size: 14px;">
-									{{ post.content | raw }}
-								</p>
+			<!-- Article view -->
+			<div class="row">
+				<div class="card mb-4" style="background-color: #B0C4DE;">
+					<div class="card-body bg-light text-dark">
+						{% if not post.imagefilename is empty %}
+							<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
+						{% endif %}
+						<div class="d-flex justify-content-between">
+							<div>
+								<h4 class="card-title">{{ post.title }}</h4>
+							</div>
+							<div>
+								<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4 col-sm-4 col-lg-4">
-						<div class="card mb-4" style="background-color: #B0C4DE;">
-							<p>Catégoie   :
-								{{ post.category.name }}</p>
-							<p>Publié par :
-								{{ post.user.name }}
-								email :
-								{{ post.user.email }}</p>
-							<p>Crée Le :
-								{{ post.createdAt | date("d/m/Y") }}
-							</p>
-							<p>Modifié le :
-								{{ post.modifiedAt | date("d/m/Y") }}</p>
-							<p>Actif :
-								{{ post.active }}
-							</p>
-						</div>
+						<p class="card-text" style="font-size: 14px;">
+							{{ post.content | raw }}
+						</p>
 					</div>
 				</div>
-				{# Fin #}
 			</div>
+			{# </div> #}
 		</div>
 	</div>
-{% endblock %}
+</main>{% endblock %}

@@ -14,11 +14,11 @@
 						<!-- Login Form -->
 						<form class="form-signin" method="post">
 							{% if error %}
-								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+								<div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 							{% endif %}
 
 							{% for message in app.flashes('notConnect') %}
-								<div class="alert alert-danger" role="alert">{{ message }}</div>
+								<div class="alert alert-danger text-center" role="alert">{{ message }}</div>
 							{% endfor %}
 
 							{% if app.user %}

@@ -40,7 +40,6 @@ class Post
      */
     private $createdAt;
 
-    // A REVOIR 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -51,11 +50,6 @@ class Post
      * @ORM\Column(type="boolean")
      */
     private $active;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $archived;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
@@ -146,18 +140,6 @@ class Post
     public function setActive(bool $active): self
     {
         $this->active = $active;
-
-        return $this;
-    }
-
-    public function getArchived(): ?bool
-    {
-        return $this->archived;
-    }
-
-    public function setArchived(bool $archived): self
-    {
-        $this->archived = $archived;
 
         return $this;
     }

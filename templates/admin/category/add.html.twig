@@ -1,19 +1,26 @@
 {% extends 'admin/admin_base.html.twig' %}
 
-{% block title %}Ajouter une categoerie
+{% block title %}Ajouter une catégorie
 {% endblock %}
 
 {% block body %}
 
 	<main>
 		<div class="container-fluid px-4">
-			<h1>Ajouter une categorie</h1>
-
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active">Nouvelle catégorie d'articles</li>
+			</ol>
 			{{ form_start(form) }}
-			{{ form_row(form.name) }}
-
-			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_category_add') }}">Valider</button>
+			<div class="row">
+				<div class="col-4">
+					{{ form_label(form.name) }}
+					{{ form_widget(form.name) }}
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary btn-sm my-3">Valider</button>
+			<a href="{{ path('admin_category_list') }}" class="btn btn-primary btn-sm">Annuler</a>
 			{{ form_end(form) }}
+
 		</div>
 	</main>
 {% endblock %}

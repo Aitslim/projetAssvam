@@ -11,7 +11,7 @@
 					<div class="card-body">
 
 						{% for flashError in app.flashes('reset_password_error') %}
-							<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+							<div class="alert alert-danger text-center" role="alert">{{ flashError }}</div>
 						{% endfor %}
 						<h5>Réinitialiser mon mot de passe</h5>
 
@@ -19,7 +19,7 @@
 						{{ form_row(requestForm.email, {required : true}) }}
 						<div>
 							<small>
-								Entrer vote adresse email pour recevoir un lien de réinitialisation.
+								Entrez vote adresse email pour recevoir un lien de réinitialisation.
 							</small>
 						</div>
 

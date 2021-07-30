@@ -23,7 +23,10 @@
 			</div>
 			{{ form_row(form.active) }}
 			{{ form_row(form.imagefilename) }}
-			<button type="submit" class="btn btn-lg btn-primary my-3" action="{{ path('admin_post_add') }}">Ajouter</button>
+
+			<button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+			<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+
 			{{ form_end(form) }}
 
 		</div>

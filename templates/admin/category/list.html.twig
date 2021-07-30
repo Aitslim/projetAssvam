@@ -1,6 +1,6 @@
 {% extends 'admin/admin_base.html.twig' %}
 
-{% block title %}Tableau categoeries
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block body %}
@@ -8,17 +8,23 @@
 		<div class="container-fluid px-4">
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-table me-1"></i>
-					Liste des categories
+					<div class="row">
+						<div class="col-5">
+							<a href="{{ path('admin_category_add') }}" class="btn btn-primary btn-sm">Ajouter</a>
+						</div>
+						<div class="col-4">
+							Liste des catégories
+						</div>
+					</div>
 				</div>
-				<table class="table table-striped table-hover table-bordered table-sm">
+				<table class="table table-hover table-striped table-bordered table-responsive-md table-sm">
 					<thead>
 						<tr>
 							<th>Id</th>
 							<th>Catégorie</th>
 							<th>Nb. Articles</th>
 							<th>Actifs</th>
-							<th>Archivés</th>
+							<th>Inactifs</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -27,14 +33,16 @@
 							<th>Catégorie</th>
 							<th>Nb. Articles</th>
 							<th>Actifs</th>
-							<th>Archivés</th>
+							<th>Inactifs</th>
 						</tr>
 					</tfoot>
 					<tbody>
 						{% for categorie in categories %}
 							<tr>
 								<td>{{ categorie.id }}</td>
-								<td>{{ categorie.name }}</td>
+								<td>
+									<a href="{{ path('admin_category_update', {id: categorie.id}) }}">{{ categorie.name }}</a>
+								</td>
 								<td>{{ categorie.posts | length }}</td>
 
 								{% set actifs = 0 %}
@@ -45,15 +53,10 @@
 
 								{% set inactifs = (categorie.posts | length) - actifs %}
 								<td>{{ inactifs }}</td>
-
-								<td>
-									<a href="{{ path('admin_category_update', {id: categorie.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
-								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
-				<a href="{{ path('admin_category_add') }}" class="btn btn-primary my-3">Ajouter</a>
 			</div>
 		</div>
 	</main>

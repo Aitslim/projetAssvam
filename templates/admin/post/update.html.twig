@@ -26,20 +26,23 @@
 						</div>
 						<div class="row">
 							<div class="col-4">
+								{{ form_row(form.active) }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4">
 								{{ form_row(form.imagefilename) }}
 							</div>
 						</div>
 					</div>
 					<div class="col-4">
-						{% if not imagepost is empty %}
-							<img
-							src="{{ asset('assets/images/uploads/posts/' ~ imagepost) }}" alt="" class="img-thumbnail" width="200" height="200">
-						{# <img class="img-fluid" src="{{ asset('assets/images/uploads/posts/' ~ imagepost) }}" alt="Chania" width="200" height="200"> #}
+						{% if not currentimgpost is empty %}
+							<img src="{{ asset('assets/images/uploads/posts/' ~ currentimgpost) }}" alt="" class="img-thumbnail" width="200" height="200">
 						{% endif %}
 					</div>
 				</div>
 
-				<button type="submit" class="btn btn-primary btn-sm" action="{{ path('admin_post_list') }}">Valider</button>
+				<button type="submit" class="btn btn-primary btn-sm">Valider</button>
 				<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
 
 				{{ form_end(form) }}
