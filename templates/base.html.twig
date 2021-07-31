@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		{# <meta name="viewport" content="width=device-width, initial-scale=1"> #}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<title>
 			{% block title %}Welcome!
@@ -26,10 +25,12 @@
 		{% endblock %}
 
 		{% block javascripts %}
+
 			<script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-			{# <script src="{{ asset('assets/params/js/toasts.js') }}"></script> #}
+			<script src="{{ asset('assets/params/js/toasts.js') }}"></script>
 			<script src="{{ asset('assets/params/js/popovers.js') }}"></script>
 			<script src="{{ asset('assets/params/js/tooltips.js') }}"></script>
+
 		{% endblock %}
 
 	</head>
@@ -40,5 +41,6 @@
 
 		{% block body %}{% endblock %}
 
+		{% include "shared/_footer.html.twig" %}
 	</body>
 </html>

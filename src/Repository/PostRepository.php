@@ -49,7 +49,7 @@ class PostRepository extends ServiceEntityRepository
     public function findAdminPosts(int $nb = 15)
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.modifiedAt', 'DESC', 'p.active')
+            ->orderBy('p.active', 'DESC', 'p.modifiedAt')
             ->setMaxResults($nb)
             ->getQuery()
             ->getResult();

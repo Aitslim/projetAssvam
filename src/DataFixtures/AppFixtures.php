@@ -26,7 +26,6 @@ class AppFixtures extends Fixture
         // Nécessite : composer require fakerphp/faker
         $faker = \Faker\Factory::create('fr_FR');
 
-        // Créer 2 Users !
         // User 1 : ROLE_ADMIN
         $user1 = new User();
         $user1->setName('Slimane')
@@ -37,7 +36,7 @@ class AppFixtures extends Fixture
             ->setPassword($this->encoder->hashPassword($user1, 'Moi123456'));
         $manager->persist($user1);
 
-        // User 2
+        // User 2 : ROLE_USER
         $user2 = new User();
         $user2->setName('toto1')
             ->setEmail('toto1@gmail.com')
@@ -46,7 +45,7 @@ class AppFixtures extends Fixture
             ->setPassword($this->encoder->hashPassword($user2, 'toto123456'));
         $manager->persist($user2);
 
-        // Autres 4 Users
+        // Autres 4 Users : ROLE_USER
         for ($i = 0; $i < 4; $i++) {
             $user = new User();
             $user->setName($faker->name())
@@ -57,7 +56,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        // Les 8 Categories !
+        // Les 8 Catégories !
         $categorie = [
             ['Nature'],
             ['Evénement'],
@@ -66,11 +65,14 @@ class AppFixtures extends Fixture
             ['Ecologie'],
             ['Poésie'],
             ['Litérature'],
-            ['Spectacle']
+            ['Spectacle'],
+            ['Sport']
         ];
 
-        // Créer le 8 Categories !
-        for ($i = 0; $i <= 7; $i++) {
+        $nb_categorie = count($categorie);
+
+        // Créer les nb_categorie Categories !
+        for ($i = 0; $i < $nb_categorie; $i++) {
 
             $category = new Category();
             $category->setName($categorie[$i][0]);
@@ -85,15 +87,14 @@ class AppFixtures extends Fixture
                     ->setContent($faker->paragraph(80, false))
                     ->setCategory($category)
                     ->setUser((rand(1, 8) > 5) ? $user1 : $user2)
-                    ->setActive(true)
-                ;
+                    ->setActive(true);
 
                 $manager->persist($post);
             }
         }
 
-        // Créer 4 Projects
-        for ($i = 0; $i <= 4; $i++) {
+        // Créer 8 Projects
+        for ($i = 0; $i < 8; $i++) {
 
             $project = new Project();
             $project->setDescription($faker->sentence(2))
@@ -101,11 +102,11 @@ class AppFixtures extends Fixture
                 ->setUser((rand(1, 8) > 5) ? $user1 : $user2)
                 ->setBudget(true)
                 ->setPubliccible(false)
-                ->setSponsor(true);
+                ->setSponsor(rand(0, 1));
 
             $manager->persist($project);
 
-            // Entre 2 et 5 evaluations/projet !
+            // Entre 4 et 5 Evaluations/projet !
             for ($j = 0; $j <= rand(2, 5); $j++) {
 
                 $evaluation = new Evaluation();

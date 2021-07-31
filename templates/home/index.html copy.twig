@@ -12,18 +12,14 @@
 				<h2>Actualités</h2>
 
 				{% for post in lastposts %}
+					<div>
+						<div class="card mb-4" style="background-color: #B0C4DE;">
 
-					<div class="card mb-4" style="background-color: #B0C4DE;">
-
-						<div class="card text-left">
-							{# <div class="card-header">
-								<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
-								<h5 class="card-title">{{ post.title }}</h5>
-							</div> #}
-							<div class="card-body">
+							<div class="card-body bg-light text-dark">
 								{% if not post.imagefilename is empty %}
 									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-fluid img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
 								{% endif %}
+
 								<div class="d-flex justify-content-between">
 									<div>
 										<h4 class="card-title">{{ post.title }}</h4>
@@ -34,25 +30,21 @@
 										</sup>
 									</div>
 								</div>
-
 								<p class="card-text" style="font-size: 14px;">
-									{{ post.content | u.truncate(1100, ' ...', false) | raw }}
+									{# {{ post.content | u.truncate(500, ' ...', false) | raw }} #}
+									{{ post.content | u.truncate(2500, ' ...', false) | raw }}
 								</p>
+								<p>{{ post.content | length }}</p>
+								<a href="{{ path('home_post_view', {id: post.id}) }}" class="card-link">
+									Lire la suite.
+								</a>
 							</div>
-							<div class="card-footer text-muted">
-								<small>Posté par
-									<a href="#">{{ post.user.email}}</a>
-									dans la Catégorie
-									{{ post.category.name}}
-								</small>
-							</div>
+
 						</div>
 
 					</div>
-
 				{% endfor %}
-				<hr>
-				<hr>
+
 			</div>
 			{# <!-- Fin Actu --> #}
 

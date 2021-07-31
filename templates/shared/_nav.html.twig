@@ -4,46 +4,60 @@
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #212121;">
 		<div class="container-fluid">
 			<a class="navbar-brand" class="nav-link" href="{{ path('home') }}">
-				<img src="{{ asset('assets/images/logoassvam.png') }}" alt="logo" style="width:30px; height:30px">
-				<span class="me-1">AssVam</span>
+				<img src="{{ asset('assets/images/montagne1.jpg') }}" alt="logo" style="width:30px; height:30px">
+				<span class="small">
+					D'ici &amp; d'ailleurs</span>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
-				<ul
-					class="navbar-nav mx-auto">
-					{# <ul class="navbar-nav ml-auto"> #}
-					<li class="nav-item active">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
 						<a class="nav-link text-white" href="{{ path('home') }}">
 							<i class="fas fa-home mr-1"></i>Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('home') }}">
+						<a class="nav-link" href="{{ path('about') }}">
 							<i class="far fa-question-circle mr-1"></i>A propos</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('home') }}">
+						<a class="nav-link" href="{{ path('contact') }}">
 							<i class="fas fa-envelope mr-1"></i>Contact</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('home') }}">
-							<i class="fas fa-envelope mr-1"></i>Autre</a>
 					</li>
 
 					{% if is_granted("ROLE_ADMIN") %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown01">
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Article</a>
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Agenda</a>
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Utilisateurs</a>
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Diaporama</a>
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu x</a>
-								<a class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Menu y</a>
-							</div>
-						</li>
+
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+								Admin
+							</button>
+							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+								<li>
+									<a class="dropdown-item active" href="{{ path('admin_home') }}">Dashboard</a>
+								</li>
+								<li><hr class="dropdown-divider"></li>
+								<li>
+									<a class="dropdown-item" href="{{ path('admin_user_list') }}">Utilisateurs</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('admin_post_list') }}">Articles</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="{{ path('admin_category_list') }}">Catégories</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Boîte à idées</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Albums</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Bureau</a>
+								</li>
+							</ul>
+						</div>
+
 					{% endif %}
 
 					{% if not app.user %}
@@ -56,9 +70,9 @@
 								<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
 						</li>
 					{% else %}
-						<li class="nav-item">
+						{# <li class="nav-item">
 							<span class="navbar-text">{{ app.user.name | slice(0,35)}}</span>
-						</li>
+						</li> #}
 						<li class="nav-item">
 							<a href="{{ path('app_logout') }}" class="nav-link">
 								<i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>

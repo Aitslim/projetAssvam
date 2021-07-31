@@ -1,6 +1,6 @@
-{% extends 'admin/admin_base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}Administration
 {% endblock %}
 
 {% block body %}
@@ -39,18 +39,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="card-columns">
-
-				<a href="{{ path('admin_post_list') }}" class="card bg-primary">
-					<div class="card-body text-center">
-						<p style="color:white" class="card-text">Some text inside the first card</p>
-					</div>
-				</a>
-
-			</div>
-
-		</div>
 	</div>
 
-</div>{% endblock %}
+{% endblock %}
