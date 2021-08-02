@@ -9,7 +9,7 @@
 
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-lg-8">
-				<h2>Actualités</h2>
+				<h3>Actualités</h3>
 
 				{% for post in lastposts %}
 					<div>
@@ -30,7 +30,8 @@
 										</sup>
 									</div>
 								</div>
-								<p class="card-text" style="font-size: 14px;">
+								<p
+									class="card-text" style="font-size: 14px;">
 									{# {{ post.content | u.truncate(500, ' ...', false) | raw }} #}
 									{{ post.content | u.truncate(2500, ' ...', false) | raw }}
 								</p>
@@ -49,9 +50,9 @@
 			{# <!-- Fin Actu --> #}
 
 			<div class="col-md-4 col-sm-4 col-lg-4">
-				<h2>Un titre...</h2>
+				<h3>Un titre...</h3>
 				<h5>Photo de :</h5>
-				<div class="fakeimg">Une image ici</div>
+				<div style="height: 200px; background: #aaa;">Une image ici</div>
 				<p>Un texte pour la photo...</p>
 				<h3>Un lien</h3>
 				<p>Lorem ipsum dolor sit ame.</p>
@@ -74,15 +75,15 @@
 				<hr class="d-sm-none">
 
 				<div>
-					<h2>Une autre titre...</h2>
+					<h3>Une autre titre...</h3>
 					<h5>Un sous-titre, Dec 7, 2021</h5>
-					<div class="fakeimg">Une image ici</div>
+					<div style="height: 200px; background: #aaa;">Une image ici</div>
 					<p>Une description..</p>
 					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 					<br>
 					<h2>Un autre titre...</h2>
 					<h5>Un sous-titre, Sep 2, 2021</h5>
-					<div class="fakeimg">Une image ici</div>
+					<div style="height: 200px; background: #aaa;">Une image ici</div>
 					<p>Un texte pour la photo...</p>
 					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 				</div>

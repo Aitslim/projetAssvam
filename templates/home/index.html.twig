@@ -9,17 +9,13 @@
 
 		<div class="row">
 			<div class="col-md-8 col-sm-8 col-lg-8">
-				<h2>Actualités</h2>
+				<h3>Actualités</h3>
 
 				{% for post in lastposts %}
 
 					<div class="card mb-4" style="background-color: #B0C4DE;">
 
 						<div class="card text-left">
-							{# <div class="card-header">
-								<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
-								<h5 class="card-title">{{ post.title }}</h5>
-							</div> #}
 							<div class="card-body">
 								{% if not post.imagefilename is empty %}
 									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-fluid img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
@@ -36,13 +32,14 @@
 								</div>
 
 								<p class="card-text" style="font-size: 14px;">
-									{{ post.content | u.truncate(1100, ' ...', false) | raw }}
+									{# {{ post.content | u.truncate(1100, ' ...', false) | raw }} #}
+									{{ post.content | raw }}
 								</p>
 							</div>
 							<div class="card-footer text-muted">
 								<small>Posté par
 									<a href="#">{{ post.user.email}}</a>
-									dans la Catégorie
+									dans la catégorie
 									{{ post.category.name}}
 								</small>
 							</div>
@@ -51,54 +48,64 @@
 					</div>
 
 				{% endfor %}
-				<hr>
-				<hr>
+
 			</div>
-			{# <!-- Fin Actu --> #}
 
+			<!-- Fin Actu -->
 			<div class="col-md-4 col-sm-4 col-lg-4">
-				<h2>Un titre...</h2>
-				<h5>Photo de :</h5>
-				<div class="fakeimg">Une image ici</div>
-				<p>Un texte pour la photo...</p>
-				<h3>Un lien</h3>
-				<p>Lorem ipsum dolor sit ame.</p>
+				<h3>Agenda</h3>
+				<h6>Soyez au rendez-vous</h6>
+				<div style="height: 200px; background: url({{ asset('assets/images/valleefleurs.jpg') }});"></div>
+				<p>Légende...</p>
 
+				<h3>Partenaires</h3>
+				<h6>Une viste s'impose</h6>
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" href="#">Active</a>
+						<a class="nav-link disabled" href="">
+							<i>Sponsor du dernier projet</i>
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Lien 1</a>
+						<a class="nav-link disabled" href="">
+							<i>Nos amis de l'ACB</i>
+						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Lien 2</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Lien 3</a>
+						<a class="nav-link disabled" href="">
+							<i>A l'autre bout du monde...</i>
+						</a>
 					</li>
 				</ul>
+				<br>
 
 				<hr class="d-sm-none">
 
 				<div>
-					<h2>Une autre titre...</h2>
-					<h5>Un sous-titre, Dec 7, 2021</h5>
-					<div class="fakeimg">Une image ici</div>
-					<p>Une description..</p>
-					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+					<h3>Projets</h3>
+					<h6>Votre avis compte</h6>
+					<div style="height: 200px; background: url({{ asset('assets/images/refletsoleil.jpg') }});"></div>
+					{# <p>Une description..</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
 					<br>
-					<h2>Un autre titre...</h2>
-					<h5>Un sous-titre, Sep 2, 2021</h5>
-					<div class="fakeimg">Une image ici</div>
-					<p>Un texte pour la photo...</p>
-					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+					<h3>Réalisations</h3>
+					<h6>2 Sept 2021</h6>
+					<div style="height: 200px; background: url({{ asset('assets/images/montagnefleurs.jpg') }});"></div>
+					<p>Légende photo...</p>
+					{# <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
+
+					<br>
+					<h3>Articles archivés</h3>
+					<h6>Un peu d'histoire</h6>
+					<div style="height: 200px; background: url({{ asset('assets/images/Tournoi2014.jpg') }});"></div>
+					{# <p>Une description..</p>
+					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
+					<br>
 				</div>
 
 			</div>
-
 		</div>
 
 	</div>
-
 {% endblock %}

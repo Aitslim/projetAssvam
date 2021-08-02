@@ -1,86 +1,87 @@
 <!-- Menu de navigation -->
-<header>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #212121;">
 
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #212121;">
-		<div class="container-fluid">
-			<a class="navbar-brand" class="nav-link" href="{{ path('home') }}">
-				<img src="{{ asset('assets/images/montagne1.jpg') }}" alt="logo" style="width:30px; height:30px">
-				<span class="small">
-					D'ici &amp; d'ailleurs</span>
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-				<ul class="navbar-nav ml-auto">
+	<div class="container-fluid">
+		<a class="navbar-brand" class="nav-link" href="{{ path('home') }}">
+			<img src="{{ asset('assets/images/montagne1.jpg') }}" alt="logo" style="width:30px; height:30px">
+			<span class="small">
+				<i>D'ici &amp; d'ailleurs</i>
+			</span>
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link text-white" href="{{ path('home') }}">
+						<i class="fas fa-home mr-1"></i>Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('about') }}">
+						<i class="far fa-question-circle mr-1"></i>A propos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('contact') }}">
+						<i class="fas fa-envelope mr-1"></i>Contact</a>
+				</li>
+
+				{% if is_granted("ROLE_ADMIN") %}
+
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+							Admin
+						</button>
+						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+							<li>
+								<a class="dropdown-item" href="{{ path('admin_board') }}">Dashboard</a>
+							</li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<a class="dropdown-item" href="{{ path('admin_user_list') }}">Utilisateurs</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('admin_post_list') }}">Articles</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{ path('admin_category_list') }}">Catégories</a>
+							</li>
+							<li>
+								<a class="dropdown-item disabled" href="#">Boîte à idées</a>
+							</li>
+							<li>
+								<a class="dropdown-item disabled" href="#">Albums</a>
+							</li>
+							<li>
+								<a class="dropdown-item disabled" href="#">Bureau</a>
+							</li>
+						</ul>
+					</div>
+
+				{% endif %}
+
+				{% if not app.user %}
 					<li class="nav-item">
-						<a class="nav-link text-white" href="{{ path('home') }}">
-							<i class="fas fa-home mr-1"></i>Accueil</a>
+						<a class="nav-link" href="{{ path('app_register') }}">
+							<i class="fas fa-user mr-1"></i>Inscription</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('about') }}">
-							<i class="far fa-question-circle mr-1"></i>A propos</a>
+						<a class="nav-link" href="{{ path('app_login') }}">
+							<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
 					</li>
+				{% else %}
+					{# <li class="nav-item">
+																											<span class="navbar-text">{{ app.user.name | slice(0,35)}}</span>
+																										</li> #}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('contact') }}">
-							<i class="fas fa-envelope mr-1"></i>Contact</a>
+						<a href="{{ path('app_logout') }}" class="nav-link">
+							<i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
 					</li>
+				{% endif %}
+			</ul>
 
-					{% if is_granted("ROLE_ADMIN") %}
-
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-								Admin
-							</button>
-							<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-								<li>
-									<a class="dropdown-item active" href="{{ path('admin_home') }}">Dashboard</a>
-								</li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<a class="dropdown-item" href="{{ path('admin_user_list') }}">Utilisateurs</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('admin_post_list') }}">Articles</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{ path('admin_category_list') }}">Catégories</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">Boîte à idées</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">Albums</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="#">Bureau</a>
-								</li>
-							</ul>
-						</div>
-
-					{% endif %}
-
-					{% if not app.user %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_register') }}">
-								<i class="fas fa-user mr-1"></i>Inscription</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_login') }}">
-								<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
-						</li>
-					{% else %}
-						{# <li class="nav-item">
-							<span class="navbar-text">{{ app.user.name | slice(0,35)}}</span>
-						</li> #}
-						<li class="nav-item">
-							<a href="{{ path('app_logout') }}" class="nav-link">
-								<i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
-						</li>
-					{% endif %}
-				</ul>
-
-			</div>
 		</div>
-	</nav>
-</header>
+	</div>
+</nav>

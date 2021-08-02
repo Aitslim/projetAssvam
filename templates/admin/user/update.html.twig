@@ -5,22 +5,22 @@
 
 {% block body %}
 
-	<main>
-		<div class="container-fluid px-4">
-			<h5>Suspendre un utilisateur</h5>
+	<div class="container-fluid" style="margin-top:30px">
 
-			{{ form_start(form) }}
+		<h5>Suspendre un utilisateur</h5>
 
-			{{ form_row(form.name) }}
-			{{ form_row(form.email) }}
-			{{ form_row(form.isVerified) }}
-			{{ form_row(form.IsSuspended) }}
+		{{ form_start(form) }}
 
-			<button type="submit" class="btn btn-primary btn-sm">Valider</button>
-			<a href="{{ path('admin_user_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+		{{ form_row(form.name) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.isVerified) }}
+		{{ form_row(form.IsSuspended) }}
 
-			{{ form_end(form) }}
-		</div>
-	</main>
+		<button type="submit" class="btn btn-primary btn-sm">Valider</button>
+		<a href="{{ path('admin_user_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+
+		{{ form_end(form) }}
+	</div>
+
 
 {% endblock %}

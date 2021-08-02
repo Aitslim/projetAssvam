@@ -6,30 +6,34 @@
 
 {% block body %}
 
-	<main>
-		<div class="container-fluid px-4">
-			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item active">Ajouter un article</li>
-			</ol>
+	<div class="container-fluid" style="margin-top:30px">
 
-			{{ form_start(form) }}
-
-			{{ form_row(form.title) }}
-			{{ form_row(form.content) }}
-			<div class="row">
-				<div class="col-4">
-					{{ form_row(form.category) }}
-				</div>
-			</div>
-			{{ form_row(form.active) }}
-			{{ form_row(form.imagefilename) }}
-
-			<button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
-			<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
-
-			{{ form_end(form) }}
-
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item active">Ajouter un article</li>
+		</ol>
+		<div class="row gx-4 gx-lg-5 justify-content-center">
+			{% for flashErrAdd in app.flashes('Errpostadd') %}
+				<div class="alert alert-danger" role="alert">{{ flashErrAdd }}</div>
+			{% endfor %}
 		</div>
-	</main>
+		{{ form_start(form) }}
+
+		{{ form_row(form.title) }}
+		{{ form_row(form.content) }}
+		<div class="row">
+			<div class="col-4">
+				{{ form_row(form.category) }}
+			</div>
+		</div>
+		{{ form_row(form.active) }}
+		{{ form_row(form.imagefilename) }}
+
+		<button type="submit" class="btn btn-primary btn-sm">Ajouter</button>
+		<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+
+		{{ form_end(form) }}
+
+	</div>
+
 
 {% endblock %}

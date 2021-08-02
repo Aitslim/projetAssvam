@@ -35,7 +35,7 @@ class PostRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT p.id, p.title, p.createdAt, p.slug, p.imagefilename
+            'SELECT p.id, p.title, p.content, p.createdAt, p.slug, p.imagefilename
             FROM App\Entity\Post p
             WHERE p.active = :active_status
             ORDER BY p.createdAt ASC'
@@ -65,7 +65,7 @@ class PostRepository extends ServiceEntityRepository
             ->andWhere('p.title LIKE :val')
             ->setParameter('val', '%' . $value . '%')
             ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            // ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

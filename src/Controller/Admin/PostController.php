@@ -30,7 +30,7 @@ class PostController extends AbstractController
             $posts = $postRepository->findPostsByTitle($keysearch);
         } else {
             // NOTE : Prévoir la pagination
-            $posts = $postRepository->findAdminPosts(100);
+            $posts = $postRepository->findAdminPosts(20);
         }
 
         if (!$posts) {
@@ -56,9 +56,14 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if (!$post->getContent()) {
+                $this->addFlash('Errpostadd', 'Contenu obligatoire pour ajouter un article !');
+                return $this->redirectToRoute('admin_post_add');
+            }
+
             $post->setUser($this->getUser());
             $post->setActive($post->getActive());
-
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('imagefilename')->getData();
             if ($imageFile) {

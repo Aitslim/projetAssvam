@@ -48,16 +48,16 @@ class PostType extends AbstractType
                 // in the associated entity, so you can use the PHP constraint classes
 
                 // A REVOIR
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Merci de charger une image valide',
-                    ])
-                ],
+                // 'constraints' => [
+                //     new File([
+                //         'maxSize' => '1024k',
+                //         'mimeTypes' => [
+                //             'image/jpg',
+                //             'image/png',
+                //         ],
+                //         'mimeTypesMessage' => 'Merci de charger une image valide',
+                //     ])
+                // ],
             ]);
     }
 

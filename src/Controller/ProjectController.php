@@ -26,7 +26,7 @@ class ProjectController extends AbstractController
         if (isset($keysearch) && $keysearch !== '') {
             $projects = $projectRepository->findProjectsByTitle($keysearch);
         } else {
-            // A REVOIR : ne pas limiter. Prévoir la pagination
+            // NOTE : ne pas limiter. Prévoir la pagination
             $projects = $projectRepository->findAdminProjects(100);
         }
 

@@ -5,9 +5,9 @@
 
 {% block body %}
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top:30px">
 
-		<div class="row justify-content-center pb-4">
+		{# <div class="row justify-content-center pb-4">
 			<div class="col-md-8 text-center">
 				<div class="card">
 					<div class="card-body">
@@ -20,25 +20,121 @@
 							<button type="button" class="btn btn-outline-primary btn-lg">Utilisateurs</button>
 						</a>
 						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Agenda</button>
+							<button type="button" class="btn btn-outline-primary btn-lg" disabled>Agenda</button>
 						</a>
 						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Boîte à idées</button>
+							<button type="button" class="btn btn-outline-primary btn-lg" disabled>Boîte à idées</button>
 						</a>
 						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Albums</button>
+							<button type="button" class="btn btn-outline-primary btn-lg" disabled>Albums</button>
 						</a>
 						<a href="">
-							<button type="button" class="btn btn-outline-primary btn-lg">Bureau</button>
+							<button type="button" class="btn btn-outline-primary btn-lg" disabled>Bureau</button>
 						</a>
 						<a href="{{ path('admin_category_list') }}">
 							<button type="button" class="btn btn-outline-primary btn-lg">Catégories</button>
 						</a>
-
 					</div>
 				</div>
 			</div>
+		</div> #}
+
+		{# <main class="bd-main order-1"> #}
+
+		<div class="bd-content ps-lg-4">
+
+			<div class="row pt-2">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<a href="{{ path('admin_post_list') }}">
+										<h5 class="card-title text-center">Articles</h5>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<a href="{{ path('admin_user_list') }}">
+										<h5 class="card-title text-center">Utilisateurs</h5>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<h5 class="card-title text-center">Agenda</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<h5 class="card-title text-center">Boîte à idées</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<h5 class="card-title text-center">Albums</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<h5 class="card-title text-center">Bureau</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card bg-light mb-3">
+						<div class="card-header">
+							<div class="row">
+								<div class="col-10 col-xl-10">
+									<a href="{{ path('admin_category_list') }}">
+										<h5 class="card-title text-center">Catégories</h5>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
-
 {% endblock %}

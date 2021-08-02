@@ -5,22 +5,22 @@
 
 {% block body %}
 
-	<main>
-		<div class="container-fluid px-4">
-			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item active">Nouvelle catégorie d'articles</li>
-			</ol>
-			{{ form_start(form) }}
-			<div class="row">
-				<div class="col-4">
-					{{ form_label(form.name) }}
-					{{ form_widget(form.name) }}
-				</div>
-			</div>
-			<button type="submit" class="btn btn-primary btn-sm my-3">Valider</button>
-			<a href="{{ path('admin_category_list') }}" class="btn btn-primary btn-sm">Annuler</a>
-			{{ form_end(form) }}
+	<div class="container-fluid" style="margin-top:30px">
 
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item active">Nouvelle catégorie d'articles</li>
+		</ol>
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col-4">
+				{{ form_label(form.name) }}
+				{{ form_widget(form.name) }}
+			</div>
 		</div>
-	</main>
+		<button type="submit" class="btn btn-primary btn-sm my-3">Valider</button>
+		<a href="{{ path('admin_category_list') }}" class="btn btn-primary btn-sm">Annuler</a>
+		{{ form_end(form) }}
+
+	</div>
+
 {% endblock %}
