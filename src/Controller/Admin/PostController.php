@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Service\FileUploader;
 use App\Repository\PostRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class PostController extends AbstractController
     /**
      * @Route("/admin/post", name="admin_post_list")
      */
-    public function indexPost(Request $request, PostRepository $postRepository): Response
+    public function indexPost(Request $request, PostRepository $postRepository, PaginatorInterface $paginator): Response
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
@@ -34,11 +35,19 @@ class PostController extends AbstractController
         }
 
         if (!$posts) {
-            $this->addFlash('NotFound', 'Aucun résultat pour votre recherche.');
+            $this->addFlash('NotFound', 'Aucun Article trouvé.');
         }
 
+        // Pagination
+        $pagination = $paginator->paginate(
+            $posts, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+        // Fin Pagination
+
         return $this->render('admin/post/list.html.twig', [
-            'posts' => $posts
+            'posts' => $pagination
         ]);
     }
 
@@ -64,6 +73,7 @@ class PostController extends AbstractController
 
             $post->setUser($this->getUser());
             $post->setActive($post->getActive());
+
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('imagefilename')->getData();
             if ($imageFile) {

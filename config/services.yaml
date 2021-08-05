@@ -8,7 +8,6 @@ parameters:
     imgposts_directory: '%kernel.project_dir%/public/assets/images/uploads/posts'
     imgalbums_directory: '%kernel.project_dir%/public/assets/images/uploads/albums'
 
-
 services:
     # default configuration for services in *this* file
     _defaults:

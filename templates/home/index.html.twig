@@ -31,7 +31,8 @@
 									</div>
 								</div>
 
-								<p class="card-text" style="font-size: 14px;">
+								<p
+									class="card-text" style="font-size: 14px;">
 									{# {{ post.content | u.truncate(1100, ' ...', false) | raw }} #}
 									{{ post.content | raw }}
 								</p>
@@ -51,60 +52,9 @@
 
 			</div>
 
-			<!-- Fin Actu -->
-			<div class="col-md-4 col-sm-4 col-lg-4">
-				<h3>Agenda</h3>
-				<h6>Soyez au rendez-vous</h6>
-				<div style="height: 200px; background: url({{ asset('assets/images/valleefleurs.jpg') }});"></div>
-				<p>Légende...</p>
+			<!-- Barre latérale -->
+			{{ include('shared/_sidebar.html.twig') }}
 
-				<h3>Partenaires</h3>
-				<h6>Une viste s'impose</h6>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item">
-						<a class="nav-link disabled" href="">
-							<i>Sponsor du dernier projet</i>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="">
-							<i>Nos amis de l'ACB</i>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="">
-							<i>A l'autre bout du monde...</i>
-						</a>
-					</li>
-				</ul>
-				<br>
-
-				<hr class="d-sm-none">
-
-				<div>
-					<h3>Projets</h3>
-					<h6>Votre avis compte</h6>
-					<div style="height: 200px; background: url({{ asset('assets/images/refletsoleil.jpg') }});"></div>
-					{# <p>Une description..</p>
-					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
-					<br>
-
-					<h3>Réalisations</h3>
-					<h6>2 Sept 2021</h6>
-					<div style="height: 200px; background: url({{ asset('assets/images/montagnefleurs.jpg') }});"></div>
-					<p>Légende photo...</p>
-					{# <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
-
-					<br>
-					<h3>Articles archivés</h3>
-					<h6>Un peu d'histoire</h6>
-					<div style="height: 200px; background: url({{ asset('assets/images/Tournoi2014.jpg') }});"></div>
-					{# <p>Une description..</p>
-					<p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p> #}
-					<br>
-				</div>
-
-			</div>
 		</div>
 
 	</div>

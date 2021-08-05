@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         // Nécessite : composer require fakerphp/faker
-        $faker = \Faker\Factory::create('fr_FR');
+        $faker = Factory::create('fr_FR');
 
         // User 1 : ROLE_ADMIN
         $user1 = new User();

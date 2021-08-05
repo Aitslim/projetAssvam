@@ -38,7 +38,7 @@ class PostType extends AbstractType
                 "required" => false,
             ])
             ->add('imagefilename', FileType::class, [
-                'label' => 'Image (jpg, png)',
+                'label' => 'Image (jpg, png, jpeg)',
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
                 // make it optional so you don't have to re-upload the PDF (ou image) file
@@ -48,16 +48,18 @@ class PostType extends AbstractType
                 // in the associated entity, so you can use the PHP constraint classes
 
                 // A REVOIR
-                // 'constraints' => [
-                //     new File([
-                //         'maxSize' => '1024k',
-                //         'mimeTypes' => [
-                //             'image/jpg',
-                //             'image/png',
-                //         ],
-                //         'mimeTypesMessage' => 'Merci de charger une image valide',
-                //     ])
-                // ],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2024k',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/png',
+                            'image/jpeg',
+
+                        ],
+                        'mimeTypesMessage' => 'Merci de choisir une image valide',
+                    ])
+                ],
             ]);
     }
 
