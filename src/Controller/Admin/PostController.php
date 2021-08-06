@@ -35,7 +35,7 @@ class PostController extends AbstractController
         }
 
         if (!$posts) {
-            $this->addFlash('NotFound', 'Aucun Article trouvé.');
+            $this->addFlash('notfound', 'Aucun Article trouvé.');
         }
 
         // Pagination
@@ -67,14 +67,13 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if (!$post->getContent()) {
-                $this->addFlash('Errpostadd', 'Contenu obligatoire pour ajouter un article !');
+                $this->addFlash('error', 'Contenu est requis pour ajouter un article !');
                 return $this->redirectToRoute('admin_post_add');
             }
 
             $post->setUser($this->getUser());
             $post->setActive($post->getActive());
 
-            /** @var UploadedFile $imageFile */
             $imageFile = $form->get('imagefilename')->getData();
             if ($imageFile) {
                 $imageFileName = $fileUploader->upload($imageFile);
@@ -107,7 +106,11 @@ class PostController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var UploadedFile $newImageFile */
+            if (!$post->getContent()) {
+                $this->addFlash('error', 'Contenu est requis pour ajouter un article !');
+                return $this->redirectToRoute('admin_post_update');
+            }
+
             $newImageFile = $form->get('imagefilename')->getData();
             if ($newImageFile) {
 

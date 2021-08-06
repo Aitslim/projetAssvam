@@ -12,10 +12,14 @@
 			<li class="breadcrumb-item active">Ajouter un article</li>
 		</ol>
 		<div class="row gx-4 gx-lg-5 justify-content-center">
-			{% for flashErrAdd in app.flashes('Errpostadd') %}
-				<div class="alert alert-danger" role="alert">{{ flashErrAdd }}</div>
+			{% for msgflash in app.flashes('error') %}
+				<div class="alert alert-danger" role="alert">{{ msgflash }}</div>
+			{% endfor %}
+			{% for msgflash in app.flashes('success') %}
+				<div class="alert alert-success" role="alert">{{ msgflash }}</div>
 			{% endfor %}
 		</div>
+
 		{{ form_start(form) }}
 
 		{{ form_row(form.title) }}
@@ -34,6 +38,5 @@
 		{{ form_end(form) }}
 
 	</div>
-
 
 {% endblock %}
