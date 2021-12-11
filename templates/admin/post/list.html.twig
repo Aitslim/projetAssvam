@@ -32,57 +32,58 @@
 					<div class="alert alert-success" role="alert">{{ msgflash }}</div>
 				{% endfor %}
 			</div>
-			<table class="table table-hover table-striped table-bordered table-responsive-md table-sm">
-				<thead>
-					<tr>
-						<th scope="col">Id</th>
-						<th scope="col">Titre</th>
-						<th scope="col">Image</th>
-						<th scope="col">Catégorie</th>
-						<th scope="col">Crée</th>
-						<th scope="col">Modifié</th>
-						<th scope="col">Activé</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<th scope="col">Id</th>
-						<th scope="col">Titre</th>
-						<th scope="col">Image</th>
-						<th scope="col">Catégorie</th>
-						<th scope="col">Crée</th>
-						<th scope="col">Modifié</th>
-						<th scope="col">Activé</th>
-					</tr>
-				</tfoot>
-
-				<tbody>
-
-					{% for post in posts %}
+			<div class="table-responsive">
+				<table class="table table-hover table-striped table-bordered table-sm">
+					<thead>
 						<tr>
-							<td>{{ post.id }}</td>
-							<td>
-								<a href="{{ path('admin_post_view', {id: post.id}) }}">{{ post.title | slice(0, 35) }}</a>
-							</td>
-							<td>
-								{% if not post.imagefilename is empty %}
-									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" style="width:30px; height:30px">
-								{% endif %}
-							</td>
-							<td>{{ post.category.name }}</td>
-							<td>{{ post.createdAt | date("d/m/Y") }}</td>
-							<td>{{ post.modifiedAt | date("d/m/Y") }}</td>
-							<td>
-								{% if post.active %}
-									<i class="fas fa-check"></i>
-								{% endif %}
-							</td>
+							<th scope="col">Id</th>
+							<th scope="col">Titre</th>
+							<th scope="col">Image</th>
+							<th scope="col">Catégorie</th>
+							<th scope="col">Crée</th>
+							<th scope="col">Modifié</th>
+							<th scope="col">Activé</th>
 						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Titre</th>
+							<th scope="col">Image</th>
+							<th scope="col">Catégorie</th>
+							<th scope="col">Crée</th>
+							<th scope="col">Modifié</th>
+							<th scope="col">Activé</th>
+						</tr>
+					</tfoot>
+					<tbody>
 
-					{% endfor %}
+						{% for post in posts %}
+							<tr>
+								<td>{{ post.id }}</td>
+								<td>
+									<a href="{{ path('admin_post_view', {id: post.id}) }}">{{ post.title | slice(0, 35) }}</a>
+								</td>
+								<td>
+									{% if not post.imagefilename is empty %}
+										<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" style="width:30px; height:30px">
+									{% endif %}
+								</td>
+								<td>{{ post.category.name }}</td>
+								<td>{{ post.createdAt | date("d/m/Y") }}</td>
+								<td>{{ post.modifiedAt | date("d/m/Y") }}</td>
+								<td>
+									{% if post.active %}
+										<i class="fas fa-check"></i>
+									{% endif %}
+								</td>
+							</tr>
 
-				</tbody>
-			</table>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
 			{# display navigation #}
 			<div class="navigation col-12">
 				{{ knp_pagination_render(posts) }}

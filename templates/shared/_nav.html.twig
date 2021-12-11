@@ -1,5 +1,5 @@
 <!-- Menu de navigation -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #212121;">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #212121;">
 
 	<div class="container-fluid">
 		<a class="navbar-brand" class="nav-link" href="{{ path('home') }}">
@@ -8,7 +8,7 @@
 				<i>D'ici &amp; d'ailleurs</i>
 			</span>
 		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -16,16 +16,24 @@
 
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link text-white" href="{{ path('home') }}">
-						<i class="fas fa-home mr-1"></i>Accueil</a>
+					<a class="nav-link" href="{{ path('home') }}">
+						<i class="fas fa-home mr-1"></i>
+						Accueil</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('about') }}">
-						<i class="far fa-question-circle mr-1"></i>A propos</a>
+						<i class="far fa-question-circle mr-1"></i>
+						A propos</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('contact') }}">
-						<i class="fas fa-envelope mr-1"></i>Contact</a>
+						<i class="fas fa-envelope mr-1"></i>
+						Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('album') }}">
+						<i class="fas fa-envelope mr-1"></i>
+						Album</a>
 				</li>
 
 				{% if is_granted("ROLE_ADMIN") %}
@@ -36,7 +44,7 @@
 						</button>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuAdmin">
 							<li>
-								<a class="dropdown-item" href="{{ path('admin_board') }}">Dashboard</a>
+								<a class="dropdown-item active" href="{{ path('admin_board') }}">Dashboard</a>
 							</li>
 							<li><hr class="dropdown-divider"></li>
 							<li>
@@ -55,7 +63,7 @@
 								<a class="dropdown-item disabled" href="#">Albums</a>
 							</li>
 							<li>
-								<button class="dropdown-item" type="button">Bureau</button>
+								<button class="dropdown-item disabled" href="#">Bureau</button>
 							</li>
 						</ul>
 					</div>
@@ -65,16 +73,19 @@
 				{% if not app.user %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_register') }}">
-							<i class="fas fa-user mr-1"></i>Inscription</a>
+							<i class="fas fa-user mr-1"></i>
+							Inscription</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_login') }}">
-							<i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
+							<i class="fas fa-sign-in-alt mr-2"></i>
+							Connexion</a>
 					</li>
 				{% else %}
 					<li class="nav-item">
 						<a href="{{ path('app_logout') }}" class="nav-link">
-							<i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
+							<i class="fas fa-sign-out-alt mr-2"></i>
+							Déconnexion</a>
 					</li>
 				{% endif %}
 			</ul>

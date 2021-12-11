@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Post;
 use App\Entity\Category;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;

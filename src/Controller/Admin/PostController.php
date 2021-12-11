@@ -31,7 +31,7 @@ class PostController extends AbstractController
             $posts = $postRepository->findPostsByTitle($keysearch);
         } else {
             // NOTE : Prévoir la pagination
-            $posts = $postRepository->findAdminPosts(20);
+            $posts = $postRepository->findAdminPosts();
         }
 
         if (!$posts) {

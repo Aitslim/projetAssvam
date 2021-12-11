@@ -19,7 +19,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLastPosts(int $nb = 10)
+    public function findLastPosts(int $nb = 20)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.active = :active_status')
@@ -30,7 +30,7 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findOldPosts(int $nb = 15): array
+    public function findOldPosts(int $nb = 20): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -46,11 +46,10 @@ class PostRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findAdminPosts(int $nb = 15)
+    public function findAdminPosts()
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.active', 'DESC', 'p.modifiedAt')
-            ->setMaxResults($nb)
             ->getQuery()
             ->getResult();
     }
@@ -65,7 +64,6 @@ class PostRepository extends ServiceEntityRepository
             ->andWhere('p.title LIKE :val')
             ->setParameter('val', '%' . $value . '%')
             ->orderBy('p.id', 'ASC')
-            // ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

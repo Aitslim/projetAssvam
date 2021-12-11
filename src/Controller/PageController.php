@@ -27,4 +27,14 @@ class PageController extends AbstractController
             'bg_image' => "contact-bg.jpg",
         ]);
     }
+
+    /**
+     * @Route("/album", name="album")
+     */
+    public function album(): Response
+    {
+        return $this->render('page/album.html.twig', [
+            'img_album' => "img_album.jpg",
+        ]);
+    }
 }

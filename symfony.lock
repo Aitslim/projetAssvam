@@ -682,6 +682,9 @@
     "theseer/tokenizer": {
         "version": "1.2.0"
     },
+    "twbs/bootstrap": {
+        "version": "v5.0.2"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.1"
     },
