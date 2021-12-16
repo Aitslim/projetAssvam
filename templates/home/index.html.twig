@@ -7,34 +7,42 @@
 {% block body %}
 	<div class="container-fluid" style="margin-top:30px">
 
+		{# <div class="alert alert-dismissible alert-warning"> #}
+		<div class="alert alert-dismissible alert-danger">
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			<h4 class="alert-heading">Warning!</h4>
+			<p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+				<a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
+		</div>
+
 		<div class="row">
 
 			<div class="col-md-8 col-sm-8 col-lg-8">
 
-				<h3>Actualités Index</h3>
+				<h3>Actualités</h3>
 
 				{% for post in lastposts %}
 
-						<div class="card mb-4 border-info shadow">
+					<div class="card mb-4 border-info shadow">
 
-							<div class="card-body">
+						<div class="card-body">
 
-								{% if not post.imagefilename is empty %}
-									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-start img-fluid" style="width:30%;height:30%;margin-right:15px;">
-								{% endif %}
-								<div class="d-flex justify-content-between">
-									<h5 class="card-title">{{ post.title }}</h5>
-									<div>
-										<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
-									</div>
+							{% if not post.imagefilename is empty %}
+								<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-start img-fluid" style="width:30%;height:30%;margin-right:15px;">
+							{% endif %}
+							<div class="d-flex justify-content-between">
+								<h5 class="card-title">{{ post.title }}</h5>
+								<div>
+									<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
 								</div>
-								<p class="card-text">
-									{{ post.content | u.truncate(800, ' ...', false) | raw }}
-								</p>
-
 							</div>
+							<p class="card-text">
+								{{ post.content | u.truncate(1000, ' ...', false) | raw }}
+							</p>
 
 						</div>
+
+					</div>
 
 				{% endfor %}
 
