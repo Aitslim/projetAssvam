@@ -20,6 +20,8 @@ class homeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'lastposts' => $lastposts,
             'oldposts' => $oldposts,
+            'letitre_accordeon1' => 'Première Alerte accordeon numero 1',
+            'letitre_accordeon2' => 'Deuxième Alerte accordeon numero 2',
         ]);
     }
 

@@ -1,16 +1,23 @@
 <!-- Barre latérale / Page Accueil -->
-{# <div class="col-md-4 col-sm-4 col-lg-4"> #}
-	<div class="col-md-3 col-sm-3 col-lg-3"> <h3>Agenda</h3>
+<div class="col-md-4 col-sm-4 col-lg-4">
+
+	<h3>Agenda</h3>
 	<div class="col">
-		<div class="card h-100 border-dark shadow">
-			<img src="{{ asset('assets/images/valleefleurs.jpg') }}" class="card-img-top" alt="...">
-			<div
-				class="card-body">
+
+		<div
+			class="card mb-4 border-dark shadow">
+			{# <div class="card h-100 border-dark shadow"> #}
+
+			<div class="card-body">
+				<a href="#">
+					<img src="{{ asset('assets/images/valleefleurs.jpg') }}" class="card-img-top rounded" alt="...">
+				</a>
 				{# <h5 class="card-title">Card title</h5> #}
 				<p class="card-text">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, 
-																								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 			</div>
 		</div>
+
 	</div>
 
 	<hr>
@@ -42,12 +49,12 @@
 	<h3>Projets</h3>
 	<div class="col">
 		<div class="card h-100 border-dark shadow">
-			<img src="{{ asset('assets/images/refletsoleil.jpg') }}" class="card-img-top" alt="...">
-			<div
-				class="card-body">
-				{# <h5 class="card-title">Card title</h5> #}
+			<div class="card-body">
+				<a href="#">
+					<img src="{{ asset('assets/images/refletsoleil.jpg') }}" class="card-img-top rounded" alt="...">
+				</a>
 				<p class="card-text">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, 
-																												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 			</div>
 		</div>
 	</div>
@@ -57,12 +64,12 @@
 	<h3>Réalisations</h3>
 	<div class="col">
 		<div class="card h-100 border-dark shadow">
-			<img src="{{ asset('assets/images/refletsoleil.jpg') }}" class="card-img-top" alt="...">
-			<div
-				class="card-body">
-				{# <h5 class="card-title">Card title</h5> #}
+			<div class="card-body">
+				<a href="#">
+					<img src="{{ asset('assets/images/valleefleurs.jpg') }}" class="card-img-top rounded" alt="...">
+				</a>
 				<p class="card-text">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, 
-																												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+														sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 			</div>
 		</div>
 	</div>
@@ -72,12 +79,13 @@
 	<h3>Articles archivés</h3>
 	<div class="col">
 		<div class="card h-100 border-dark shadow">
-			<img src="{{ asset('assets/images/Tournoi2014.jpg') }}" class="card-img-top" alt="...">
-			<div
-				class="card-body">
-				{# <h5 class="card-title">Card title</h5> #}
+			<div class="card-body">
+				<a href="#">
+					<img src="{{ asset('assets/images/Tournoi2014.jpg') }}" class="card-img-top rounded" alt="...">
+				</a>
+
 				<p class="card-text">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, 
-																												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
 			</div>
 		</div>
 	</div>
@@ -87,9 +95,11 @@
 	<div class="col">
 		<h3>Articles archivés</h3>
 		<div class="card h-100 border-dark shadow">
-			<img src="{{ asset('assets/images/montagnefleurs.jpg') }}" class="card-img-top" alt="...">
-			<div
-				class="card-body">
+			<div class="card-body">
+				<a href="#">
+					<img src="{{ asset('assets/images/montagnefleurs.jpg') }}" class="card-img-top rounded" alt="...">
+				</a>
+
 				{# <h5 class="card-title">Card title</h5> #}
 				<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 			</div>
@@ -102,9 +112,6 @@
 		<div class="toast-header">
 			<strong class="me-auto">Bootstrap</strong>
 			<small>11 mins ago</small>
-			<button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
-				<span aria-hidden="true"></span>
-			</button>
 		</div>
 		<div class="toast-body">
 			Hello, world! This is a toast message.
