@@ -4,7 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid" style="margin-top:30px">
+<div class="container-fluid" style="margin-top:30px">
+
+	<div class="row row-cols-1">
 
 		<div class="card mb-4">
 			<div class="card-header">
@@ -20,9 +22,8 @@
 						<th>Id</th>
 						<th>Nom</th>
 						<th>Email</th>
-						<th>Roles</th>
-						<th>Mail confirmé</th>
-						<th>Suspendu</th>
+						<th>OK</th>
+						<th>KO</th>
 					</tr>
 				</thead>
 				<tfoot>
@@ -30,13 +31,13 @@
 						<th>Id</th>
 						<th>Nom</th>
 						<th>Email</th>
-						<th>Roles</th>
-						<th>Mail confirmé</th>
-						<th>Suspendu</th>
+						<th>OK</th>
+						<th>KO</th>
 					</tr>
 				</tfoot>
 				<tbody>
 					{% for user in users %}
+
 						<tr>
 							<td>{{ user.id }}</td>
 							<td>
@@ -44,21 +45,18 @@
 							</td>
 							<td>{{ user.email }}</td>
 							<td>
-								{% for unrole in user.roles %}
-									{{ unrole }}
-								{% endfor %}
-							</td>
-							<td>
 								{{ user.isVerified ? '<i class="fas fa-check text-primary"></i>' : '' }}
 							</td>
 							<td>
 								{{ user.IsSuspended ? '<i class="fas fa-minus-circle text-danger"></i>' : '' }}
 							</td>
 						</tr>
+
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
 	</div>
+</div>
 
 {% endblock %}

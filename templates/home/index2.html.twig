@@ -5,44 +5,45 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid" style="margin-top:30px">
+
+	<div
+		class="container-fluid" style="margin-top:30px">
+
+		<!-- Message Alerte -->
+		{{ include('home/alerte.html.twig') }}
+
+		<!-- Message(s) Alerte type accordeon -->
+		{{ include('home/alerteaccordeon.html.twig') }}
+
+		<br>
+
 		<div class="row">
+
 			<div class="col-md-8 col-sm-8 col-lg-8">
+
 				<h3>Actualités INDEX 2</h3>
 
 				{% for post in lastposts %}
 
-					<div class="card mb-4" style="background-color: #B0C4DE;">
-
-						<div class="card text-left">
-							<div class="card-body">
-								{% if not post.imagefilename is empty %}
-									<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-left img-fluid img-thumbnail" style="width:30%;height:30%;margin-right:15px;">
-								{% endif %}
-								<div class="d-flex justify-content-between">
-									<div>
-										<h4 class="card-title">{{ post.title }}</h4>
-									</div>
-									<div>
-										<sup>
-											{{ post.createdAt | date("d/m/Y") }}
-										</sup>
-									</div>
+					<div class="card mb-4 border-info shadow">
+						<div class="card-header bg-transparent">
+							<div class="d-flex justify-content-between">
+								<h5 class="card-title">{{ post.title }}</h5>
+								<div>
+									<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
 								</div>
+							</div>
+						</div>
+						<div class="card-body">
 
-								<p
-									class="card-text" style="font-size: 14px;">
-									{# {{ post.content | u.truncate(1100, ' ...', false) | raw }} #}
-									{{ post.content | raw }}
-								</p>
-							</div>
-							<div class="card-footer text-muted">
-								<small>Posté par
-									<a href="#">{{ post.user.email}}</a>
-									dans la catégorie
-									{{ post.category.name}}
-								</small>
-							</div>
+							{% if not post.imagefilename is empty %}
+								<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-start img-fluid rounded" style="width:30%;height:30%;margin-right:15px;">
+							{% endif %}
+
+							<p class="card-text">
+								{{ post.content | u.truncate(500, ' ...', false) | raw }}
+							</p>
+
 						</div>
 
 					</div>
@@ -57,4 +58,5 @@
 		</div>
 
 	</div>
+
 {% endblock %}
