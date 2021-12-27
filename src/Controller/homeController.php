@@ -22,6 +22,7 @@ class homeController extends AbstractController
             'oldposts' => $oldposts,
             'letitre_accordeon1' => 'Première Alerte accordeon numero 1',
             'letitre_accordeon2' => 'Deuxième Alerte accordeon numero 2',
+            'v_alert_msg' => "Information importante : mon message. Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,"
         ]);
     }
 
@@ -44,12 +45,10 @@ class homeController extends AbstractController
      */
     public function viewpost($id, PostRepository $postRepository): Response
     {
-        $lastposts = $postRepository->findBy(['id' => $id]);
-        $oldposts = $postRepository->findOldPosts();
+        $post = $postRepository->findOneBy(['id' => $id]);
 
-        return $this->render('home/index.html.twig', [
-            'lastposts' => $lastposts,
-            'oldposts' => $oldposts,
+        return $this->render('home/view.html.twig', [
+            'post' => $post,
         ]);
     }
 }

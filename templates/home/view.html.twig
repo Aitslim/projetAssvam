@@ -6,28 +6,20 @@
 
 {% block body %}
 
-	<div class="container-fluid" style="margin-top:30px">
-
-		<!-- Message Alerte -->
-		{{ include('home/alerte.html.twig') }}
-
-		<!-- Message(s) Alerte type accordeon -->
-		{{ include('home/alerteaccordeon.html.twig') }}
+	<div
+		class="container-fluid" style="margin-top:30px">
 
 		<br>
 
 		<div class="row">
 
-			<div class="col-md-8 col-sm-8 col-lg-8">
+			<div class="col-md-12 col-sm-12 col-lg-12">
 
-				<h3>Actualités</h3>
-
-				{% for post in lastposts %}
+				<h3>Article View</h3>
 
 					<div class="card mb-4 border-info shadow">
 
 						<div class="card-body">
-
 							{% if not post.imagefilename is empty %}
 								<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" alt="" class="float-start img-fluid rounded" style="width:30%;height:30%;margin-right:15px;">
 							{% endif %}
@@ -35,30 +27,21 @@
 							<div class="d-flex justify-content-between">
 
 								<h5 class="card-title">{{ post.title }}</h5>
-
 								<div>
 									<sup>{{ post.createdAt | date("d/m/Y") }}</sup>
 								</div>
 
 							</div>
 
-							<p class="card-text">
-								{{ post.content | u.truncate(500, ' ...', false) | raw }}
-							</p>
-							{% if post.content | raw | length > 500 %}
-								<a href="{{ path('home_post_view', {id: post.id}) }}" class="stretched-link"></a>
-							{% endif %}
-
+							<p class="card-text">{{ post.content | raw }}</p>
+							<a href="{{ path('home') }}" class="card-link">
+								Retour à l'Accueil
+							</a>
 						</div>
 
 					</div>
 
-				{% endfor %}
-
 			</div>
-
-			<!-- Barre latérale -->
-			{{ include('shared/_sidebar.html.twig') }}
 
 		</div>
 
