@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
 
                 $post = new Post();
                 $post->setTitle($faker->sentence(5))
-                    ->setContent($faker->paragraph(80, false))
+                    ->setContent($faker->paragraph(20, false))
                     ->setCategory($category)
                     ->setUser((rand(1, 8) > 5) ? $user1 : $user2)
                     ->setActive(true);
