@@ -18,7 +18,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('admin/Dashboard.html.twig', [
+        return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
