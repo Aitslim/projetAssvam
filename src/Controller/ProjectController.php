@@ -74,7 +74,7 @@ class ProjectController extends AbstractController
     /**
      * @Route("/admin/project/update/{id}", name="admin_project_update", requirements={"id"="\d+"})
      */
-    public function updateProject(Project $project, Request $request, FileUploader $fileUploader): Response
+    public function updateProject(Project $project, Request $request): Response
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
@@ -93,8 +93,7 @@ class ProjectController extends AbstractController
         }
 
         return $this->render('admin/project/update.html.twig', [
-            'imageproject' => $project->getImageFilename(), // renvoi en cours
-            'form' => $form->createView(),
+             'form' => $form->createView(),
         ]);
     }
 
@@ -143,7 +142,6 @@ class ProjectController extends AbstractController
             'project' => $project
         ]);
     }
-    //
 
     /**
      * @Route("/project", name="project")

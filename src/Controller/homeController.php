@@ -22,7 +22,7 @@ class homeController extends AbstractController
             'oldposts' => $oldposts,
             'letitre_accordeon1' => 'Première Alerte accordeon numero 1',
             'letitre_accordeon2' => 'Deuxième Alerte accordeon numero 2',
-            'v_alert_msg' => "Information importante : mon message. Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,"
+            'v_alert_msg' => "Information importante : mon message. Best check yo self, you're not looking too good."
         ]);
     }
 

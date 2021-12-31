@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid" style="margin-top:30px">
+
+		<div class="bd-content ps-lg-4">
+
+			<div class="row pt-2">
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Articles 2</h5>
+							<a href="{{ path('admin_post_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-primary mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Utilisateurs</h5>
+							<a href="{{ path('admin_user_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-secondary mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Agenda</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-success mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Boîte à idées</h5>
+							<a href="{{ path('admin_user_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-danger mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Albums</h5>
+							<a href="{{ path('admin_user_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Bureau</h5>
+							<a href="{{ path('admin_user_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Categories</h5>
+							<a href="{{ path('admin_category_list') }}" class="stretched-link"></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Catégories</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-2">
+					<div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+						<div class="card-body shadow">
+							<h5 class="card-title text-center">Albums</h5>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- Debut -->
+	<div class="container-fluid" style="margin-top:30px">
+
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+
+			<div class="col">
+				<div class="card bg-primary shadow">
+					<div class="card-body text-center">
+						<h5 class="card-title">Utilisateurs</h5>
+						<a href="{{ path('admin_user_list') }}" class="stretched-link"></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-warning shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the second card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-success shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the third card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-danger shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the fourth card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-light shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the fifth card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-info shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the sixth card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-primary shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the first card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-warning shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the second card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-success shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the third card</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-info shadow">
+					<div class="card-body text-center">
+						<p class="card-text">Some text inside the third card</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}
