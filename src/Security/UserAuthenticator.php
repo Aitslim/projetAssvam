@@ -57,7 +57,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         // if (!$user->isVerified()) {
         //     $this->tokenStorage->setToken(new AnonymousToken('default', 'anon.'));
         //     $request->getSession()->invalidate();
-        //     $this->flashBag->add('error', 'Vous devez valider votre adresse e-mail');
+        //     $this->flashBag->add('error', 'Vous devez valider votre adresse email');
 
         //     return new RedirectResponse($this->urlGenerator->generate('app_login'));
         // }

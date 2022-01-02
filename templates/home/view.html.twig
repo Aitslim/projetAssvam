@@ -10,7 +10,7 @@
 
 		<br>
 
-		<div class="row">
+		{# <div class="row"> #}
 
 			<div class="col-md-12 col-sm-12 col-lg-12">
 
@@ -45,7 +45,19 @@
 
 			</div>
 
-		</div>
+		{# </div> #}
+
+
+		{# <div class="row no-gutters bg-light position-relative">
+			<div class="col-md-6 mb-md-0 p-md-4">
+				<img src="{{ asset('assets/images/uploads/posts/' ~ post.imagefilename) }}" class="w-100" alt="...">
+			</div>
+			<div class="col-md-6 position-static p-4 pl-md-0">
+				<h5 class="mt-0">{{ post.title }}</h5>
+				<p>{{ post.content | raw }}</p>
+				<a href="{{ path('home') }}" class="stretched-link"></a>
+			</div>
+		</div> #}
 
 	</div>
 

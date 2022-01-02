@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="Cette adresse Email est déjà enregistrée")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email est déjà enregistrée")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

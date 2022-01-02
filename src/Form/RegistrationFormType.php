@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
                    "label" => "Nom d'utilisateur",
             ])
             ->add('email', EmailType::class, [
-                   'label' => 'Adresse Email',
+                   'label' => 'Adresse email',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "J'accepte les conditions d'utilisation",
