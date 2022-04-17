@@ -32,5 +32,6 @@ class EvaluationType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Evaluation::class,
         ]);
+
     }
 }
