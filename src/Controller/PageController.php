@@ -34,7 +34,14 @@ class PageController extends AbstractController
     public function album(): Response
     {
         return $this->render('page/album.html.twig', [
-            'img_album' => "img_album.jpg",
+            'img_album1' => "img_album1.jpg",
+            'img_album2' => "img_album2.jpg",
+            'img_album3' => "img_album3.jpg",
+            'img_album4' => "img_album4.jpg",
+            'img_album5' => "img_album5.jpg",
+            'img_album6' => "img_album6.jpg",
+            'img_album7' => "img_album7.jpg",
+            'img_album8' => "img_album8.jpg",
         ]);
     }
 }

@@ -6,13 +6,15 @@
 
 {% block body %}
 
+	{% include "shared/_header.html.twig" %}
+
 	<div class="container-fluid" style="margin-top:30px">
 
 		<!-- Message Alerte -->
 		{{ include('home/alerte.html.twig') }}
 
 		<!-- Message(s) Alerte type accordeon -->
-		{# {{ include('home/alerteaccordeon.html.twig') }} #}
+		{{ include('home/alerteaccordeon.html.twig') }}
 
 		<br>
 
@@ -20,7 +22,7 @@
 
 			<div class="col-md-8 col-sm-8 col-lg-8">
 
-				<h3>Actualités</h3>
+				<h3 class="text-info">Actualités</h3>
 
 				{% for post in lastposts %}
 
@@ -43,9 +45,9 @@
 							</div>
 
 							<p class="card-text">
-								{{ post.content | u.truncate(500, ' ...', false) | raw }}
+								{{ post.content | u.truncate(1000, ' ...', false) | raw }}
 							</p>
-							{% if post.content | raw | length > 500 %}
+							{% if post.content | raw | length > 1000 %}
 								<a href="{{ path('home_post_view', {id: post.id}) }}" class="stretched-link"></a>
 							{% endif %}
 

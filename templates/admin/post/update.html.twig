@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un article
+{% block title %}
+	Modifier un article
 {% endblock %}
 
 {% block body %}
@@ -33,7 +34,9 @@
 			<a href="{{ path('admin_post_list') }}" class="btn btn-primary btn-sm">Annuler</a>
 
 			{{ form_end(form) }}
+
 		</fieldset>
+
 	</div>
 
 {% endblock %}
