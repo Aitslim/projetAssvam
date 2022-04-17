@@ -92,7 +92,6 @@ class AppFixtures extends Fixture
                 $manager->persist($post);
             }
         }
-
         // Créer 8 Projects
         for ($i = 0; $i < 8; $i++) {
 
