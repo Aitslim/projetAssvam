@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Controller\Admin\UserController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +21,7 @@ class UserController extends AbstractController
         if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
+
         $users = $userRepository->findAll();
         return $this->render('admin/user/list.html.twig', [
             'users' => $users
@@ -31,6 +33,7 @@ class UserController extends AbstractController
      */
     public function updateUser(User $user, Request $request): Response
     {
+
         if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('home');
         }
